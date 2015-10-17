@@ -23,9 +23,9 @@ public class Account implements Serializable{
     private String Fullname;
     private String email;
     private Date dateofBirth;
-    private Subscription Subscription;
+    private Membership Subscription;
 
-    public Account(String username, String password, String Fullname, String email, Date dateofBirth, Subscription Subscription) {
+    public Account(String username, String password, String Fullname, String email, Date dateofBirth, Membership Subscription) {
         this.username = username;
         this.password = password;
         this.Fullname = Fullname;
@@ -36,17 +36,6 @@ public class Account implements Serializable{
     public Account() {
     }
 
-    @OneToOne
-    public Subscription getSubscription() {
-        return Subscription;
-    }
-
-    public void setSubscription(Subscription Subscription) {
-        this.Subscription = Subscription;
-    }
-    
-    
-    
     @Id
     @GeneratedValue
     public String getUsername() {

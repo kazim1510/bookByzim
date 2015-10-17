@@ -6,13 +6,20 @@
 package com.bookstore.DB;
 
 import com.bookstore.model.Account;
-import javax.ejb.Stateless;
+import javax.enterprise.context.Dependent;
+import javax.enterprise.inject.Default;
+
+
 import javax.persistence.*;
+
 /**
  *
  * @author HP
  */
-@Stateless
+
+
+@Default
+@Dependent
 public class AccountJPA implements AccountDAO{
 
     @PersistenceContext

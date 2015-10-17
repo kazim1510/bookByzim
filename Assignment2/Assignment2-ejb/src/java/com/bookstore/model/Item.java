@@ -16,30 +16,28 @@ import javax.persistence.*;
 public class Item implements Serializable{
 
 
-    private int itemId;
+    private String itemId;
     private String itemName;
     private String itemDescp;
     
-    private Subscription subscription;
+    private Membership subscription;
     
-     public Item(int itemId, String itemName, String itemDescp, Subscription subscription) {
+     public Item(String itemId, String itemName, String itemDescp, Membership subscription) {
         this.itemId = itemId;
         this.itemName = itemName;
         this.itemDescp = itemDescp;
         this.subscription = subscription;
     }
 
-    public Item() {
+     public Item() {
     }
      
-    
     @Id
-    @GeneratedValue
-    public int getItemId() {
+    public String getItemId() {
         return itemId;
     }
 
-    public void setItemId(int itemId) {
+    public void setItemId(String itemId) {
         this.itemId = itemId;
     }
 
@@ -62,11 +60,11 @@ public class Item implements Serializable{
     }
 
 @ManyToOne
-    public Subscription getSubscription() {
+    public Membership getSubscription() {
         return subscription;
     }
 
-    public void setSubscription(Subscription subscription) {
+    public void setSubscription(Membership subscription) {
         this.subscription = subscription;
     }
 }

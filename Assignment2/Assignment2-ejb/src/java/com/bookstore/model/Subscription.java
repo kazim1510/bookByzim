@@ -3,10 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package com.bookstore.model;
 
-import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
@@ -14,68 +12,59 @@ import javax.persistence.*;
  *
  * @author HP
  */
-@Entity
-public class Subscription implements Serializable{
-   
-    private int subsId;
-    private String subsType;
-    private Date startDate;
-    private Date endDate;
-    private int pricePerMonth;
-
-    public Subscription(int subsId, String subsType, Date startDate, Date endDate, int pricePerMonth) {
-        this.subsId = subsId;
-        this.subsType = subsType;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.pricePerMonth = pricePerMonth;
-    }
-
-    public Subscription() {
-    }
-
+public class Subscription {
     
+    private String subscriptionid;
+    private Account account;
+    private Membership membership;
+    private Date startdate;
+    private Date enddate;
+
     @Id
-    @GeneratedValue
-    public int getSubsId() {
-        return subsId;
+    public String getSubscriptionid() {
+        return subscriptionid;
     }
 
-    public void setSubsId(int subsId) {
-        this.subsId = subsId;
+    public void setSubscriptionid(String subscriptionid) {
+        this.subscriptionid = subscriptionid;
     }
 
-    public String getSubsType() {
-        return subsType;
+    @OneToOne
+    public Account getAccount() {
+        return account;
     }
 
-    public void setSubsType(String subsType) {
-        this.subsType = subsType;
+    public void setAccount(Account account) {
+        this.account = account;
     }
 
-@Temporal(TemporalType.DATE)
-    public Date getStartDate() {
-        return startDate;
+    @OneToOne
+    public Membership getMembership() {
+        return membership;
     }
 
-    public void setStartDate(Date startDate) {
-        this.startDate = startDate;
+    public void setMembership(Membership membership) {
+        this.membership = membership;
     }
 
-@Temporal(TemporalType.DATE)
-    public Date getEndDate() {
-        return endDate;
+    public Date getStartdate() {
+        return startdate;
     }
 
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
+    public void setStartdate(Date startdate) {
+        this.startdate = startdate;
     }
 
-    public int getPricePerMonth() {
-        return pricePerMonth;
+    public Date getEnddate() {
+        return enddate;
     }
 
-    public void setPricePerMonth(int pricePerMonth) {
-        this.pricePerMonth = pricePerMonth;
+    public void setEnddate(Date enddate) {
+        this.enddate = enddate;
     }
+   
+    
+    
+    
+    
 }

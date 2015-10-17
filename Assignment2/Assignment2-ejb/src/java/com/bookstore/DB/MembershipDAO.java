@@ -5,7 +5,7 @@
  */
 package com.bookstore.DB;
 
-import com.bookstore.model.Subscription;
+import com.bookstore.model.Membership;
 import java.io.Serializable;
 import javax.ejb.Remote;
 
@@ -14,9 +14,9 @@ import javax.ejb.Remote;
  * @author HP
  */
 @Remote
-public interface SubscriptionDAO extends Serializable{
+public interface MembershipDAO extends Serializable{
  
-    public Subscription get(int id);
+    public Membership get(int id);
     
-    public void update(Subscription subscription);
+    public void update(Membership subscription);
 }
