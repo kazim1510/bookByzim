@@ -15,14 +15,26 @@ import javax.persistence.*;
 @Entity
 public class Item implements Serializable{
 
-@Id
+
     private int itemId;
     private String itemName;
     private String itemDescp;
     
-    @ManyToOne
     private Subscription subscription;
     
+     public Item(int itemId, String itemName, String itemDescp, Subscription subscription) {
+        this.itemId = itemId;
+        this.itemName = itemName;
+        this.itemDescp = itemDescp;
+        this.subscription = subscription;
+    }
+
+    public Item() {
+    }
+     
+    
+    @Id
+    @GeneratedValue
     public int getItemId() {
         return itemId;
     }
@@ -43,10 +55,13 @@ public class Item implements Serializable{
         return itemDescp;
     }
 
+   
+
     public void setItemDescp(String itemDescp) {
         this.itemDescp = itemDescp;
     }
 
+@ManyToOne
     public Subscription getSubscription() {
         return subscription;
     }

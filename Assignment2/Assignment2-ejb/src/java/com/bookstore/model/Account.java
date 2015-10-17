@@ -17,12 +17,38 @@ import org.hibernate.validator.constraints.Email;
 @Entity
 public class Account implements Serializable{
     
-@Id
+
     private String username;
     private String password;
-    
     private String Fullname;
+    private String email;
+    private Date dateofBirth;
+    private Subscription Subscription;
+
+    public Account(String username, String password, String Fullname, String email, Date dateofBirth, Subscription Subscription) {
+        this.username = username;
+        this.password = password;
+        this.Fullname = Fullname;
+        this.email = email;
+        this.dateofBirth = dateofBirth;
+        this.Subscription = Subscription;
+    }
+    public Account() {
+    }
+
+    @OneToOne
+    public Subscription getSubscription() {
+        return Subscription;
+    }
+
+    public void setSubscription(Subscription Subscription) {
+        this.Subscription = Subscription;
+    }
     
+    
+    
+    @Id
+    @GeneratedValue
     public String getUsername() {
         return username;
     }
@@ -55,6 +81,7 @@ public class Account implements Serializable{
         this.email = email;
     }
 
+@Temporal(TemporalType.DATE)
     public Date getDateofBirth() {
         return dateofBirth;
     }
@@ -62,9 +89,6 @@ public class Account implements Serializable{
     public void setDateofBirth(Date dateofBirth) {
         this.dateofBirth = dateofBirth;
     }
-    private String email;
     
-    @Temporal(TemporalType.DATE)
-    private Date dateofBirth;
     
 }

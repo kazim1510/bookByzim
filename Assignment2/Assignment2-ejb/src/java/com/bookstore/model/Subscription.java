@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.bookstore.model;
 
 import java.io.Serializable;
@@ -16,18 +17,26 @@ import javax.persistence.*;
 @Entity
 public class Subscription implements Serializable{
    
-@Id
     private int subsId;
     private String subsType;
-    
-    @Temporal(TemporalType.DATE)
     private Date startDate;
-    
-    @Temporal(TemporalType.DATE)
     private Date endDate;
-    
     private int pricePerMonth;
+
+    public Subscription(int subsId, String subsType, Date startDate, Date endDate, int pricePerMonth) {
+        this.subsId = subsId;
+        this.subsType = subsType;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.pricePerMonth = pricePerMonth;
+    }
+
+    public Subscription() {
+    }
+
     
+    @Id
+    @GeneratedValue
     public int getSubsId() {
         return subsId;
     }
@@ -44,6 +53,7 @@ public class Subscription implements Serializable{
         this.subsType = subsType;
     }
 
+@Temporal(TemporalType.DATE)
     public Date getStartDate() {
         return startDate;
     }
@@ -52,6 +62,7 @@ public class Subscription implements Serializable{
         this.startDate = startDate;
     }
 
+@Temporal(TemporalType.DATE)
     public Date getEndDate() {
         return endDate;
     }
@@ -67,7 +78,4 @@ public class Subscription implements Serializable{
     public void setPricePerMonth(int pricePerMonth) {
         this.pricePerMonth = pricePerMonth;
     }
-    
-    
-    
 }
