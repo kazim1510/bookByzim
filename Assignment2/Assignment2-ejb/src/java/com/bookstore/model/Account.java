@@ -5,6 +5,7 @@
  */
 package com.bookstore.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 import org.hibernate.validator.constraints.Email;
@@ -14,14 +15,14 @@ import org.hibernate.validator.constraints.Email;
  * @author HP
  */
 @Entity
-public class Account {
+public class Account implements Serializable{
     
+@Id
     private String username;
     private String password;
     
     private String Fullname;
     
-    @Id
     public String getUsername() {
         return username;
     }
@@ -65,8 +66,5 @@ public class Account {
     
     @Temporal(TemporalType.DATE)
     private Date dateofBirth;
-    
-    
-    
     
 }

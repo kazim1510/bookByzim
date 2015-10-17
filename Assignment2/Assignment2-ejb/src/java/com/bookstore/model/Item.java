@@ -5,13 +5,15 @@
  */
 package com.bookstore.model;
 
+import java.io.Serializable;
 import javax.persistence.*;
 
 /**
  *
  * @author HP
  */
-public class Item {
+@Entity
+public class Item implements Serializable{
 
     private int itemId;
     private String itemName;

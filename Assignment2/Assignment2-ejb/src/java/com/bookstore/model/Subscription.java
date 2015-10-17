@@ -5,6 +5,7 @@
  */
 package com.bookstore.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
@@ -13,7 +14,7 @@ import javax.persistence.*;
  * @author HP
  */
 @Entity
-public class Subscription {
+public class Subscription implements Serializable{
    
     private int subsId;
     private String subsType;
