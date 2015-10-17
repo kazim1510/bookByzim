@@ -15,6 +15,7 @@ import javax.persistence.*;
 @Entity
 public class Item implements Serializable{
 
+@Id
     private int itemId;
     private String itemName;
     private String itemDescp;
@@ -22,7 +23,6 @@ public class Item implements Serializable{
     @ManyToOne
     private Subscription subscription;
     
-    @Id
     public int getItemId() {
         return itemId;
     }

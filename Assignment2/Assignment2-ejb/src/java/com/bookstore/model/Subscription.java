@@ -16,6 +16,7 @@ import javax.persistence.*;
 @Entity
 public class Subscription implements Serializable{
    
+@Id
     private int subsId;
     private String subsType;
     
@@ -27,7 +28,6 @@ public class Subscription implements Serializable{
     
     private int pricePerMonth;
     
-    @Id
     public int getSubsId() {
         return subsId;
     }
