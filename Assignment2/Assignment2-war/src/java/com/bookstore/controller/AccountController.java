@@ -7,6 +7,10 @@ package com.bookstore.controller;
 
 import com.bookstore.DB.AccountDAO;
 import com.bookstore.model.Account;
+import java.io.Serializable;
+import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.*;
 import javax.servlet.http.HttpServletRequest;
@@ -15,9 +19,12 @@ import javax.servlet.http.HttpServletRequest;
  *
  * @author HP
  */
-public class AccountController {
+
+@Named
+@RequestScoped
+public class AccountController implements Serializable{
     
-    @Inject
+    @EJB
     private AccountDAO accountdao;
     
     Account account = new Account();
@@ -32,11 +39,11 @@ public class AccountController {
         
         try{
             getRequest().login(account.getUsername(), account.getPassword());
-            sessionContrller.setAccount(accountdao.get(account.getUsername()));
+            //sessionContrller.setAccount(accountdao.get(account.getUsername()));
         }
         catch(Exception e)
         {
-            System.out.println("Error");
+            context.addMessage(null, new FacesMessage("Invalid username or password"));
         }
     }
     

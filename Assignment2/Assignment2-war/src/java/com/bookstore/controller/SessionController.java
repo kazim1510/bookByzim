@@ -6,12 +6,18 @@
 package com.bookstore.controller;
 
 import com.bookstore.model.Account;
+import java.io.Serializable;
+import javax.enterprise.context.SessionScoped;
+import javax.inject.Named;
 
 /**
  *
  * @author HP
  */
-public class SessionController {
+
+@Named
+@SessionScoped
+public class SessionController implements Serializable{
 
     private Account account;
 

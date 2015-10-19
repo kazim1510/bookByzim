@@ -5,43 +5,46 @@
  */
 package com.bookstore.DB;
 
-import com.bookstore.model.Account;
+import com.bookstore.model.Item;
+import java.util.List;
+import javax.ejb.Stateless;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Default;
-
-
 import javax.persistence.*;
 
 /**
  *
  * @author HP
  */
-
-
 @Default
-@Dependent
-public class AccountJPA implements AccountDAO{
-
+@Stateless
+public class ItemJPABean implements ItemDAO{
+    
     @PersistenceContext
     private EntityManager em;
 
     @Override
-    public void create(Account account) {
+    public void create(Item item) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public Account get(String username) {
+    public Item get(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void update(Account account) {
+    public List<Item> getList() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public void delete(Account account) {
+    public void update(Item item) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void delete(Item item) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
