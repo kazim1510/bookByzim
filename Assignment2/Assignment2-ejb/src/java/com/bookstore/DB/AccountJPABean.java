@@ -33,7 +33,15 @@ public class AccountJPABean implements AccountDAO{
 
     @Override
     public Account get(String username) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try{
+        Account account= em.find(Account.class, username);
+        return account;
+        }
+        catch(Exception e)
+        {
+            System.out.println("Error");
+            return null;
+        }
     }
 
     @Override

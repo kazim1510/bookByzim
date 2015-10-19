@@ -22,16 +22,16 @@ public class Account implements Serializable{
     private String password;
     private String Fullname;
     private String email;
-    private Date dateofBirth;
+    private Date dob;
     
     private Subscription subscription;
     
-    public Account(String username, String password, String Fullname, String email, Date dateofBirth, Subscription subscription) {
+    public Account(String username, String password, String Fullname, String email, Date dob, Subscription subscription) {
         this.username = username;
         this.password = password;
         this.Fullname = Fullname;
         this.email = email;
-        this.dateofBirth = dateofBirth;
+        this.dob = dob;
         this.subscription = subscription;
     }
     public Account() {
@@ -71,12 +71,12 @@ public class Account implements Serializable{
     }
 
 @Temporal(TemporalType.DATE)
-    public Date getDateofBirth() {
-        return dateofBirth;
+    public Date getDob() {
+        return dob;
     }
 
-    public void setDateofBirth(Date dateofBirth) {
-        this.dateofBirth = dateofBirth;
+    public void setDob(Date dateofBirth) {
+        this.dob = dob;
     }
   
 }

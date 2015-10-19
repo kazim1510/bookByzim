@@ -8,11 +8,13 @@ package com.bookstore.controller;
 import com.bookstore.DB.AccountDAO;
 import com.bookstore.model.Account;
 import java.io.Serializable;
+import java.nio.channels.SeekableByteChannel;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.*;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -39,16 +41,22 @@ public class AccountController implements Serializable{
         
         try{
             getRequest().login(account.getUsername(), account.getPassword());
-            sessionContrller.setAccount(accountdao.get(account.getUsername()));
-            return "welcome";
+          //  sessionContrller.setAccount(account);
+            return "/welcome?faces-redirect=true";
         }
         catch(Exception e)
         {
+            System.out.println(e);
             context.addMessage(null, new FacesMessage("Invalid username or password"));
             return null;
         }
     }
     
+    public String logout(SessionController sessionController) throws ServletException{
+        sessionController.setAccount(null);
+        getRequest().logout();
+        return "/Login?faces-redirect=true";
+    }
     private static HttpServletRequest getRequest() {
         FacesContext context = FacesContext.getCurrentInstance();
         return (HttpServletRequest)context.getExternalContext().getRequest();
