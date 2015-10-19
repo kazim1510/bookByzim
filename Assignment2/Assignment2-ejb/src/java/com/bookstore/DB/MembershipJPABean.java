@@ -36,6 +36,11 @@ public class MembershipJPABean implements MembershipDAO{
         Membership premium = new Membership();
         premium.setSubsType("premium");
         premium.setPricePerMonth(20);
+        
+        Membership admin = new Membership();
+        admin.setSubsType("admin");
+        admin.setPricePerMonth(100);
+                
     }
 
     @Override
@@ -45,6 +50,6 @@ public class MembershipJPABean implements MembershipDAO{
 
     @Override
     public void update(Membership subscription) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

@@ -33,17 +33,19 @@ public class AccountController implements Serializable{
         return account;
     }
     
-    public void login(SessionController sessionContrller){
+    public String login(SessionController sessionContrller){
         
         FacesContext context = FacesContext.getCurrentInstance();
         
         try{
             getRequest().login(account.getUsername(), account.getPassword());
-            //sessionContrller.setAccount(accountdao.get(account.getUsername()));
+            sessionContrller.setAccount(accountdao.get(account.getUsername()));
+            return "welcome";
         }
         catch(Exception e)
         {
             context.addMessage(null, new FacesMessage("Invalid username or password"));
+            return null;
         }
     }
     

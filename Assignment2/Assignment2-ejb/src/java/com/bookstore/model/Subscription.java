@@ -5,6 +5,7 @@
  */
 package com.bookstore.model;
 
+import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
 
@@ -12,7 +13,8 @@ import javax.persistence.*;
  *
  * @author HP
  */
-public class Subscription {
+@Entity
+public class Subscription implements Serializable{
     
     private String subscriptionid;
     private Account account;
@@ -47,6 +49,7 @@ public class Subscription {
         this.membership = membership;
     }
 
+    @Temporal(TemporalType.DATE)
     public Date getStartdate() {
         return startdate;
     }
@@ -54,7 +57,7 @@ public class Subscription {
     public void setStartdate(Date startdate) {
         this.startdate = startdate;
     }
-
+    @Temporal(TemporalType.DATE)
     public Date getEnddate() {
         return enddate;
     }

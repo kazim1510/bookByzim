@@ -23,21 +23,21 @@ public class Account implements Serializable{
     private String Fullname;
     private String email;
     private Date dateofBirth;
-    private Membership Subscription;
-
-    public Account(String username, String password, String Fullname, String email, Date dateofBirth, Membership Subscription) {
+    
+    private Subscription subscription;
+    
+    public Account(String username, String password, String Fullname, String email, Date dateofBirth, Subscription subscription) {
         this.username = username;
         this.password = password;
         this.Fullname = Fullname;
         this.email = email;
         this.dateofBirth = dateofBirth;
-        this.Subscription = Subscription;
+        this.subscription = subscription;
     }
     public Account() {
     }
 
     @Id
-    @GeneratedValue
     public String getUsername() {
         return username;
     }
@@ -78,6 +78,5 @@ public class Account implements Serializable{
     public void setDateofBirth(Date dateofBirth) {
         this.dateofBirth = dateofBirth;
     }
-    
-    
+  
 }
