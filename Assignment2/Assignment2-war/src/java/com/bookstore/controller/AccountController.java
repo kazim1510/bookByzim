@@ -35,13 +35,13 @@ public class AccountController implements Serializable{
         return account;
     }
     
-    public String login(SessionController sessionContrller){
+    public String login(SessionController sessionController){
         
         FacesContext context = FacesContext.getCurrentInstance();
         
         try{
             getRequest().login(account.getUsername(), account.getPassword());
-          //  sessionContrller.setAccount(account);
+             sessionController.setAccount(account);
             return "/welcome?faces-redirect=true";
         }
         catch(Exception e)

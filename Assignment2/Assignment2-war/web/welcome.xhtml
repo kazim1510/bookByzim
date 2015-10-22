@@ -8,6 +8,8 @@
     <h:body>
         <h1> Welcome to Online Book Store</h1>
         <h:form>
+            Welcome 
+            <h:outputText id="username" value="#{sessionController.account.username}"/>
             <h:commandButton value="Logout" action="#{accountController.logout(sessionController)}"/>
         </h:form>
     </h:body>

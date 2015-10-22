@@ -22,10 +22,10 @@ public class Account implements Serializable{
     private String password;
     private String Fullname;
     private String email;
-    private String dob;
+    private Date dob;
     private String subscription;
     
-    public Account(String username, String password, String Fullname, String email, String dob, String subscription) {
+    public Account(String username, String password, String Fullname, String email, Date dob, String subscription) {
         this.username = username;
         this.password = password;
         this.Fullname = Fullname;
@@ -40,12 +40,13 @@ public class Account implements Serializable{
     public String getUsername() {
         return username;
     }
-
-    public String getDob() {
+    
+    @Temporal(TemporalType.DATE)
+    public Date getDob() {
         return dob;
     }
 
-    public void setDob(String dob) {
+     public void setDob(Date dob) {
         this.dob = dob;
     }
 
@@ -81,6 +82,8 @@ public class Account implements Serializable{
     public String getSubscription() {
         return subscription;
     }
+
+   
 
     public void setSubscription(String subscription) {
         this.subscription = subscription;

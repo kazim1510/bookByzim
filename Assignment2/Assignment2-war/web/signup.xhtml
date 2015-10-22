@@ -12,33 +12,33 @@
             <h:panelGrid columns="2" cellpadding="5">
                 
                 <label>Full Name : </label>
-                <h:inputText id="firstname" value="#{accountController.account.fullname}" required="true" requiredMessage=" First is required"/>
+                <p:inputText id="firstname" value="#{accountController.account.fullname}" required="true" requiredMessage=" First is required"/>
               
                 
                 <label>User Name:</label>
-                <h:inputText id="username" value="#{accountController.account.username}" required="true" requiredMessage=" Username is required"/>
+                <p:inputText id="username" value="#{accountController.account.username}" required="true" requiredMessage=" Username is required"/>
                 
                 
                 <label>Password :</label>
-                <h:inputSecret id="password" value="#{accountController.account.password}" required="true" requiredMessage=" Password is required"/>
+                <p:password id="password" value="#{accountController.account.password}" required="true" requiredMessage=" Password is required"/>
                 
                 
                 <label>Email :</label>
-                <h:inputText id="email" value="#{accountController.account.email}" required="true" requiredMessage=" Email is required"/>
+                <p:inputText id="email" value="#{accountController.account.email}" required="true" requiredMessage=" Email is required"/>
                
                 
                 <label>Date of Birth:</label>
-                <h:inputText id="dob" value="#{accountController.account.dob}" required="true" requiredMessage=" DOB is required"/>
+                <p:calendar id="dob" value="#{accountController.account.dob}" required="true" requiredMessage=" DOB is required"/>
            
                 
                 <label> Subscription : </label>
-                <h:selectOneMenu value="#{accountController.account.subscription}">
+                <p:selectOneMenu value="#{accountController.account.subscription}">
    			<f:selectItem itemValue="free" itemLabel="free" />
    			<f:selectItem itemValue="standard" itemLabel="standard" />
    			<f:selectItem itemValue="premium" itemLabel="premium" />
-   		</h:selectOneMenu>
+   		</p:selectOneMenu>
 
-                <h:commandButton value="Signup" action="#{accountController.signUpUser()}"/>
+                <p:commandButton value="Signup" action="#{accountController.signUpUser()}"/>
             
             </h:panelGrid> 
         </h:form>
