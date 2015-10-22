@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:panelGrid columns="2" cellpadding="5">
+                
+                <label>Full Name : </label>
+                <h:inputText id="firstname" value="#{accountController.account.fullname}" required="true" requiredMessage=" First is required"/>
+              
+                
+                <label>User Name:</label>
+                <h:inputText id="username" value="#{accountController.account.username}" required="true" requiredMessage=" Username is required"/>
+                
+                
+                <label>Password :</label>
+                <h:inputSecret id="password" value="#{accountController.account.password}" required="true" requiredMessage=" Password is required"/>
+                
+                
+                <label>Email :</label>
+                <h:inputText id="email" value="#{accountController.account.email}" required="true" requiredMessage=" Email is required"/>
+               
+                
+                <label>Date of Birth:</label>
+                <h:inputText id="dob" value="#{accountController.account.dob}" required="true" requiredMessage=" DOB is required"/>
+           
+                
+                <label> Subscription : </label>
+                <h:selectOneMenu value="#{accountController.account.subscription}">
+   			<f:selectItem itemValue="free" itemLabel="free" />
+   			<f:selectItem itemValue="standard" itemLabel="standard" />
+   			<f:selectItem itemValue="premium" itemLabel="premium" />
+   		</h:selectOneMenu>
+
+                <h:commandButton value="Signup" action="#{accountController.signUpUser()}"/>
+            
+            </h:panelGrid> 
+        </h:form>
+    </h:body>
+</html>

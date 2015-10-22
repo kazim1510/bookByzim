@@ -5,18 +5,22 @@
  */
 package com.bookstore.controller;
 
-import com.bookstore.DB.MembershipDAO;
+import com.bookstore.DB.MembershipBeanRemote;
+import com.bookstore.model.Membership;
 import java.io.Serializable;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
+import javax.inject.Named;
 
 /**
  *
  * @author HP
  */
+
+@Named
+@RequestScoped
 public class MembershipController implements Serializable{
     
-    @Inject
-    private MembershipDAO membershipDAO;
-    
+  
     
 }

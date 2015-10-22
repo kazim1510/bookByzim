@@ -15,7 +15,7 @@ import javax.persistence.*;
  * @author HP
  */
 @Stateless
-public class SubscriptionJPABean implements SubscriptionDAO{
+public class SubscriptionJPABean implements SubscriptionBeanRemote{
      
     @PersistenceContext
     private EntityManager em;
@@ -32,7 +32,13 @@ public class SubscriptionJPABean implements SubscriptionDAO{
 
     @Override
     public void createSub(Subscription sub) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            
+        em.persist(sub.getAccount());
+        
+        em.persist(sub.getMembership());
+        
+
+        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override

@@ -54,4 +54,6 @@ public class Membership implements Serializable{
     public void setPricePerMonth(int pricePerMonth) {
         this.pricePerMonth = pricePerMonth;
     }
+    
+
 }

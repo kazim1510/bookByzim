@@ -18,7 +18,7 @@ import javax.persistence.*;
  */
 @Default
 @Stateless
-public class MembershipJPABean implements MembershipDAO{
+public class MembershipJPABean implements MembershipBeanRemote{
     
     @PersistenceContext
     private EntityManager em;

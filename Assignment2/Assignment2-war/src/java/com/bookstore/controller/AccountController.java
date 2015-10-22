@@ -5,7 +5,7 @@
  */
 package com.bookstore.controller;
 
-import com.bookstore.DB.AccountDAO;
+import com.bookstore.DB.AccountBeanRemote;
 import com.bookstore.model.Account;
 import java.io.Serializable;
 import java.nio.channels.SeekableByteChannel;
@@ -27,7 +27,7 @@ import javax.servlet.http.HttpServletRequest;
 public class AccountController implements Serializable{
     
     @EJB
-    private AccountDAO accountdao;
+    private AccountBeanRemote accountBeanRemote;
     
     Account account = new Account();
     
@@ -50,6 +50,11 @@ public class AccountController implements Serializable{
             context.addMessage(null, new FacesMessage("Invalid username or password"));
             return null;
         }
+    }
+    
+    public String signUpUser(){
+        accountBeanRemote.create(account);
+        return "/welcome?faces-redirect=true";
     }
     
     public String logout(SessionController sessionController) throws ServletException{

@@ -21,13 +21,16 @@ import javax.persistence.*;
 
 @Default
 @Stateless
-public class AccountJPABean implements AccountDAO{
+public class AccountJPABean implements AccountBeanRemote{
 
     @PersistenceContext
     private EntityManager em;
 
     @Override
     public void create(Account account) {
+        
+        em.persist(account);
+        em.flush();
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

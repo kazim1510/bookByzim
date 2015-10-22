@@ -18,7 +18,7 @@ import javax.persistence.*;
  */
 @Default
 @Stateless
-public class ItemJPABean implements ItemDAO{
+public class ItemJPABean implements ItemBeanRemote{
     
     @PersistenceContext
     private EntityManager em;

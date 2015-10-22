@@ -14,7 +14,7 @@ import javax.ejb.Remote;
  * @author HP
  */
 @Remote
-public interface AccountDAO extends Serializable{
+public interface AccountBeanRemote extends Serializable{
     
     public void create(Account account);
     

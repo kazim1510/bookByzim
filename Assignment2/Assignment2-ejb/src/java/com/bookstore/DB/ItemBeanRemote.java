@@ -15,7 +15,7 @@ import javax.ejb.Remote;
  * @author HP
  */
 @Remote
-public interface ItemDAO extends Serializable{
+public interface ItemBeanRemote extends Serializable{
     
     public void create(Item item);
     
