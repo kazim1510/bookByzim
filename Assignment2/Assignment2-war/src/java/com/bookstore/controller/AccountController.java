@@ -9,6 +9,7 @@ import com.bookstore.DB.AccountBeanRemote;
 import com.bookstore.model.Account;
 import java.io.Serializable;
 import java.nio.channels.SeekableByteChannel;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
@@ -65,6 +66,15 @@ public class AccountController implements Serializable{
     private static HttpServletRequest getRequest() {
         FacesContext context = FacesContext.getCurrentInstance();
         return (HttpServletRequest)context.getExternalContext().getRequest();
+    }
+    
+    public List<Account> listUser(){
+        return accountBeanRemote.getList();
+    }
+    
+    public String upgradeUser(Account account){
+        accountBeanRemote.update(account);
+        return "welcome";
     }
     
 }

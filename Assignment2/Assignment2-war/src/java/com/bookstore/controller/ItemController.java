@@ -5,10 +5,38 @@
  */
 package com.bookstore.controller;
 
+import com.bookstore.DB.ItemBeanRemote;
+import com.bookstore.model.Item;
+import java.io.Serializable;
+import java.util.List;
+import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
+import javax.inject.Named;
+
 /**
  *
  * @author HP
  */
-public class ItemController {
+@Named
+@RequestScoped
+public class ItemController implements Serializable{
+    
+    @EJB
+    ItemBeanRemote itemremote;
+
+    public Item getItem() {
+        return item;
+    }
+    
+    private Item item=new Item();
+    
+    public String createItem(){
+        itemremote.create(item);
+        return "welcome";
+    }
+    
+    public List<Item> listItem(String username){
+        return itemremote.getList(username);
+    }
     
 }

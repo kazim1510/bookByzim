@@ -7,9 +7,11 @@ package com.bookstore.DB;
 
 import com.bookstore.model.Item;
 import java.util.List;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Default;
+import javax.inject.Inject;
 import javax.persistence.*;
 
 /**
@@ -22,10 +24,15 @@ public class ItemJPABean implements ItemBeanRemote{
     
     @PersistenceContext
     private EntityManager em;
-
+    
+    @EJB
+    private AccountBeanRemote accountBeanRemote;
+   
     @Override
     public void create(Item item) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        //item.setMembership(membershipBeanRemote.get(item.getMembership().getSubsId()));
+        em.persist(item);
+        em.flush();
     }
 
     @Override
@@ -34,8 +41,13 @@ public class ItemJPABean implements ItemBeanRemote{
     }
 
     @Override
-    public List<Item> getList() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public List<Item> getList(String Username) {
+        String type = accountBeanRemote.get(Username).getSubscription();
+        
+        String queryStr = "SELECT item FROM  Item item WHERE item.membership = :type";
+        TypedQuery<Item> query = em.createQuery(queryStr, Item.class);
+        query.setParameter("type", type);
+        return query.getResultList();
     }
 
     @Override

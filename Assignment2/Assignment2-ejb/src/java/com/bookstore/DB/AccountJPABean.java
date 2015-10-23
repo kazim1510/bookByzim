@@ -8,6 +8,7 @@ package com.bookstore.DB;
 import com.bookstore.model.Account;
 import com.bookstore.utility.Sha;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -29,6 +30,7 @@ public class AccountJPABean implements AccountBeanRemote{
 
     @PersistenceContext
     private EntityManager em;
+    
 
     @Override
     public void create(Account account) {
@@ -39,7 +41,6 @@ public class AccountJPABean implements AccountBeanRemote{
         }
         em.persist(account);
         em.flush();
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -57,11 +58,23 @@ public class AccountJPABean implements AccountBeanRemote{
 
     @Override
     public void update(Account account) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        String type = account.getSubscription();
+        account = get(account.getUsername());
+        account.setSubscription(type);
+        em.merge(account);
+        em.flush();
     }
 
     @Override
     public void delete(Account account) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List<Account> getList() {
+        String queryStr = "SELECT account FROM Account account";
+        TypedQuery<Account> query = em.createQuery(queryStr, Account.class);
+        return query.getResultList();
     }
 }

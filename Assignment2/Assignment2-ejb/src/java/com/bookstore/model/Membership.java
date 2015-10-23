@@ -31,7 +31,6 @@ public class Membership implements Serializable{
     }
 
     @Id
-    @GeneratedValue
     public String getSubsId() {
         return subsId;
     }

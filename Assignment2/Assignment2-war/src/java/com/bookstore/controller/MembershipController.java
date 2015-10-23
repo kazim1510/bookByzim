@@ -8,6 +8,7 @@ package com.bookstore.controller;
 import com.bookstore.DB.MembershipBeanRemote;
 import com.bookstore.model.Membership;
 import java.io.Serializable;
+import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -20,7 +21,9 @@ import javax.inject.Named;
 @Named
 @RequestScoped
 public class MembershipController implements Serializable{
-    
-  
-    
+     @EJB
+      MembershipBeanRemote membershipBeanRemote;
+  public void loadData(){
+      membershipBeanRemote.loadData();
+  }
 }

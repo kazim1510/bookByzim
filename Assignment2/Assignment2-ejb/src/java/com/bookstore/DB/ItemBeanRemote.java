@@ -21,10 +21,11 @@ public interface ItemBeanRemote extends Serializable{
     
     public Item get(int id);
     
-    public List<Item> getList();
+    public List<Item> getList(String username);
     
     public void update(Item item);
     
     public void delete(Item item);
+  
     
 }

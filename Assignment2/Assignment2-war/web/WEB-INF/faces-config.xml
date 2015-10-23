@@ -35,4 +35,15 @@
             <to-view-id>/Login.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/adminwelcome.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>admininsertitem</from-outcome>
+            <to-view-id>/adminInsertItem.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>adminusers</from-outcome>
+            <to-view-id>/adminusers.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

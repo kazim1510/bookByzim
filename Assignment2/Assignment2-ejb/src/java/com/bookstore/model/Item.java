@@ -20,19 +20,21 @@ public class Item implements Serializable{
     private String itemName;
     private String itemDescp;
     
-    private Membership subscription;
     
-     public Item(String itemId, String itemName, String itemDescp, Membership subscription) {
+    private String membership;
+    
+     public Item(String itemId, String itemName, String itemDescp, String membership) {
         this.itemId = itemId;
         this.itemName = itemName;
         this.itemDescp = itemDescp;
-        this.subscription = subscription;
+        this.membership = membership;
     }
 
      public Item() {
     }
      
     @Id
+    @GeneratedValue
     public String getItemId() {
         return itemId;
     }
@@ -59,12 +61,24 @@ public class Item implements Serializable{
         this.itemDescp = itemDescp;
     }
 
+    /*
 @ManyToOne
-    public Membership getSubscription() {
-        return subscription;
+
+    public Membership getMembership() {
+        return membership;
     }
 
-    public void setSubscription(Membership subscription) {
-        this.subscription = subscription;
+    public void setMembership(Membership membership) {
+        this.membership = membership;
     }
+    */
+
+    public String getMembership() {
+        return membership;
+    }
+
+    public void setMembership(String membership) {
+        this.membership = membership;
+    }
+    
 }

@@ -16,7 +16,9 @@ import javax.ejb.Remote;
 @Remote
 public interface MembershipBeanRemote extends Serializable{
  
-    public Membership get(int id);
+    public Membership get(String id);
     
     public void update(Membership subscription);
+    
+    public void loadData();
 }

@@ -7,6 +7,7 @@ package com.bookstore.DB;
 
 import com.bookstore.model.Account;
 import java.io.Serializable;
+import java.util.List;
 import javax.ejb.Remote;
 
 /**
@@ -23,4 +24,6 @@ public interface AccountBeanRemote extends Serializable{
     public void update(Account account);
     
     public void delete(Account account);
+    
+    public List<Account> getList();
 }
