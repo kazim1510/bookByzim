@@ -6,6 +6,10 @@
 package com.bookstore.DB;
 
 import com.bookstore.model.Account;
+import com.bookstore.utility.Sha;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Default;
@@ -28,7 +32,11 @@ public class AccountJPABean implements AccountBeanRemote{
 
     @Override
     public void create(Account account) {
-        
+        try {
+            account.setPassword(Sha.hash256(account.getPassword()));
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(AccountJPABean.class.getName()).log(Level.SEVERE, null, ex);
+        }
         em.persist(account);
         em.flush();
         //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
