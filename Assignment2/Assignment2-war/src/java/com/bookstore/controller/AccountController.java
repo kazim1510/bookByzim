@@ -74,7 +74,7 @@ public class AccountController implements Serializable{
     
     public String upgradeUser(Account account){
         accountBeanRemote.update(account);
-        return "welcome";
+        return "/welcome?faces-redirect=true";
     }
     
 }
