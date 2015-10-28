@@ -32,7 +32,7 @@ public class ItemController implements Serializable{
     
     public String createItem(){
         itemremote.create(item);
-        return "/welcome?faces-redirect=true";
+        return "/Admin/adminwelcome?faces-redirect=true";
     }
     
     public List<Item> listItem(String username){

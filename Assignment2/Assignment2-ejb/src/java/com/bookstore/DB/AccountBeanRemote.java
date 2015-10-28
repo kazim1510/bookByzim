@@ -23,6 +23,8 @@ public interface AccountBeanRemote extends Serializable{
     
     public void update(Account account);
     
+    public void updatePassword(Account account);
+    
     public void delete(Account account);
     
     public List<Account> getList();

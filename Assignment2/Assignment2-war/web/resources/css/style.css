@@ -1,0 +1,97 @@
+
+* { margin: 0px;}
+
+html,body{
+    height:100%;
+}
+
+
+
+#header {
+    height:100px;
+    border-left:1px solid black;
+    border-right:1px solid black;
+    border-top:1px solid black;
+    background:#ededed;
+    padding:10px;
+    color: darkorange;
+    }
+
+#footer {
+    border-left:1px solid black;
+    border-right:1px solid black;
+    border-top:1px solid black;
+    background:#ffab62;
+    height:100px;
+    bottom:0;
+    
+}
+
+
+#content{
+      font-weight: bold;
+     padding: 10px;
+     text-decoration: none; 
+}
+
+
+
+#menu{
+    padding:10px;
+    background:  darksalmon;
+    color:black;
+     
+}
+#menu a{
+     color: red;
+     font-weight: bold;
+     padding: 10px;
+     text-decoration: none;
+}
+#menu a:hover
+{
+     background: white;
+     
+}
+
+
+
+
+
+table { 
+  color: #333;
+  font-family: Helvetica, Arial, sans-serif;
+  width: 640px;
+  /* Table reset stuff */
+  border-collapse: collapse; border-spacing: 0; 
+}
+		
+td, th {  border: 1px none; height: 30px; font-size: small }
+			
+th {
+  /* Gradient Background */
+	background: linear-gradient(#333 0%,#444 100%);
+	color: #FFF; font-weight: bold;
+	height: 40px;
+}
+		
+td { background: #FAFAFA; text-align: center; }
+
+/* Zebra Stripe Rows */
+		
+tr:nth-child(even) td { background: #EEE; } 
+tr:nth-child(odd) td { background: #FDFDFD; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+

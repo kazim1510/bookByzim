@@ -9,6 +9,8 @@ import com.bookstore.DB.AccountBeanRemote;
 import com.bookstore.model.Account;
 import java.io.Serializable;
 import java.nio.channels.SeekableByteChannel;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -42,8 +44,15 @@ public class AccountController implements Serializable{
         
         try{
             getRequest().login(account.getUsername(), account.getPassword());
-             sessionController.setAccount(account);
-            return "/welcome?faces-redirect=true";
+             Account acc =  accountBeanRemote.get(account.getUsername());
+            
+            sessionController.setAccount(acc);
+            if(!acc.getSubscription().equals("Admin")){
+                return "/Customer/welcome?faces-redirect=true";
+            }
+            else{
+                return "/Admin/adminwelcome?faces-redirect=true";
+            }
         }
         catch(Exception e)
         {
@@ -54,8 +63,14 @@ public class AccountController implements Serializable{
     }
     
     public String signUpUser(){
+      
+        account.setStartdate(new Date());
+        Date enddate = AccountController.addMonths(account.getStartdate(), account.getSubmonth());
+        account.setStartdate(new Date());
+        account.setEnddate(enddate);
         accountBeanRemote.create(account);
-        return "/welcome?faces-redirect=true";
+        return "/index?faces-redirect=true";
+        
     }
     
     public String logout(SessionController sessionController) throws ServletException{
@@ -74,7 +89,19 @@ public class AccountController implements Serializable{
     
     public String upgradeUser(Account account){
         accountBeanRemote.update(account);
-        return "/welcome?faces-redirect=true";
+        return "/Customer/welcome?faces-redirect=true";
     }
+    public String changePassword(Account account){
+        accountBeanRemote.updatePassword(account);
+        return "/index?faces-redirect=true";
+    }
+    public static Date addMonths(Date dateValue, int months){
+
+		Calendar calendar = Calendar.getInstance();		
+		calendar.setTime(dateValue);
+		calendar.add(Calendar.MONTH, + months);
+		dateValue = calendar.getTime();
+		return  dateValue;
+	}
     
 }

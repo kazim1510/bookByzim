@@ -65,6 +65,22 @@ public class AccountJPABean implements AccountBeanRemote{
         em.merge(account);
         em.flush();
     }
+    
+    @Override
+    public void updatePassword(Account account) {
+        
+        String password = account.getPassword();
+        account = get(account.getUsername());
+        account.setPassword(password);
+        try {
+            account.setPassword(Sha.hash256(account.getPassword()));
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(AccountJPABean.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        em.merge(account);
+        em.flush();
+    }
+    
 
     @Override
     public void delete(Account account) {

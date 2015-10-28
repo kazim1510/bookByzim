@@ -11,6 +11,7 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Default;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.persistence.*;
 
@@ -31,6 +32,7 @@ public class ItemJPABean implements ItemBeanRemote{
     @Override
     public void create(Item item) {
         //item.setMembership(membershipBeanRemote.get(item.getMembership().getSubsId()));
+        
         em.persist(item);
         em.flush();
     }
@@ -43,7 +45,6 @@ public class ItemJPABean implements ItemBeanRemote{
     @Override
     public List<Item> getList(String Username) {
         String type = accountBeanRemote.get(Username).getSubscription();
-        
         String queryStr = "SELECT item FROM  Item item WHERE item.membership = :type";
         TypedQuery<Item> query = em.createQuery(queryStr, Item.class);
         query.setParameter("type", type);

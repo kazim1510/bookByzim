@@ -8,30 +8,39 @@ package com.bookstore.model;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
-import org.hibernate.validator.constraints.Email;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
  * @author HP
  */
+@XmlRootElement
 @Entity
 public class Account implements Serializable{
     
-
+    
     private String username;
     private String password;
     private String Fullname;
     private String email;
     private Date dob;
     private String subscription;
+    private int submonth;
+    private Date startdate;
+    private Date enddate;
     
-    public Account(String username, String password, String Fullname, String email, Date dob, String subscription) {
+    public Account(String username, String password, String Fullname, String email, Date dob, String subscription, int submonth, Date startdate, Date enddate) {
         this.username = username;
         this.password = password;
         this.Fullname = Fullname;
         this.email = email;
         this.dob = dob;
         this.subscription = subscription;
+        this.submonth = submonth;
+        this.startdate = new Date();
+        this.enddate = enddate;
+       
     }
     public Account() {
     }
@@ -88,5 +97,30 @@ public class Account implements Serializable{
     public void setSubscription(String subscription) {
         this.subscription = subscription;
     }
+
+    public int getSubmonth() {
+        return submonth;
+    }
+
+    public void setSubmonth(int submonth) {
+        this.submonth = submonth;
+    }
+    @Temporal(TemporalType.DATE)
+    public Date getStartdate() {
+        return startdate;
+    }
+
+    public void setStartdate(Date startdate) {
+        this.startdate = startdate;
+    }
+    @Temporal(TemporalType.DATE)
+    public Date getEnddate() {
+        return enddate;
+    }
+
+    public void setEnddate(Date enddate) {
+        this.enddate = enddate;
+    }
+    
   
 }
