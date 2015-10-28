@@ -9,9 +9,10 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
 /**
- *
+ *A utility class for encoding passwords
  * @author bipinpatel
  */
+
 public class Sha {
     public static String hash256(String data) throws NoSuchAlgorithmException {
     MessageDigest md = MessageDigest.getInstance("SHA-256");

@@ -8,7 +8,6 @@ package com.bookstore.controller;
 import com.bookstore.DB.AccountBeanRemote;
 import com.bookstore.model.Account;
 import java.io.Serializable;
-import java.nio.channels.SeekableByteChannel;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -21,23 +20,26 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 
 /**
- *
+ * This backing bean manages login, logout, register, upgrade user, delete user
+ * list user and change password.
  * @author HP
  */
 
 @Named
 @RequestScoped
 public class AccountController implements Serializable{
-    
     @EJB
     private AccountBeanRemote accountBeanRemote;
-    
     Account account = new Account();
-    
     public Account getAccount(){
         return account;
     }
-    
+    /**
+     * Logs in the user via container-managed authentication and also
+     * records the currently logged in user into the given session controller.
+     * @param sessionController the session controller
+     * @return 
+     */
     public String login(SessionController sessionController){
         
         FacesContext context = FacesContext.getCurrentInstance();
@@ -61,7 +63,10 @@ public class AccountController implements Serializable{
             return null;
         }
     }
-    
+      /**
+     * Register the new user.
+     * @return
+     */
     public String signUpUser(){
       
         account.setStartdate(new Date());
@@ -72,29 +77,64 @@ public class AccountController implements Serializable{
         return "/index?faces-redirect=true";
         
     }
-    
+     /**
+     * Logs out the current user via the container and also clears the
+     * current user in the given session controller.
+     * 
+     * @param sessionController
+     * @return
+     */
     public String logout(SessionController sessionController) throws ServletException{
         sessionController.setAccount(null);
         getRequest().logout();
         return "/Login?faces-redirect=true";
     }
+    /**
+     * Obtains the current HTTPServletRequest from the container.
+     * 
+     * @return the current HTTPServletRequest
+     */
     private static HttpServletRequest getRequest() {
         FacesContext context = FacesContext.getCurrentInstance();
         return (HttpServletRequest)context.getExternalContext().getRequest();
     }
-    
+     /**
+     * get the list of user.
+     * @return list of registered user.
+     * 
+     */
     public List<Account> listUser(){
         return accountBeanRemote.getList();
     }
-    
+     /**
+     * Change subscription of logged user.
+     * @param account
+     * @return
+     */
     public String upgradeUser(Account account){
         accountBeanRemote.update(account);
         return "/Customer/welcome?faces-redirect=true";
     }
+     /**
+     * Delete account of user.
+     * @param account
+     * @return
+     */
+    public String deleteUser(Account account){
+        accountBeanRemote.delete(account);
+        return "/Admin/adminusers?faces-redirect=true";
+    }
+    /**
+     * Change password of registered user.
+     * @param account
+     * @return
+     */
     public String changePassword(Account account){
         accountBeanRemote.updatePassword(account);
         return "/index?faces-redirect=true";
     }
+    
+    
     public static Date addMonths(Date dateValue, int months){
 
 		Calendar calendar = Calendar.getInstance();		
@@ -103,5 +143,6 @@ public class AccountController implements Serializable{
 		dateValue = calendar.getTime();
 		return  dateValue;
 	}
+   
     
 }

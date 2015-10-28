@@ -11,8 +11,9 @@
     <h:body>
          <ui:composition template="common.xhtml">	
              <ui:define name="content">
+                 <div id="content">
                  <br></br><br></br>
-        <h:dataTable var="user"  value="#{accountController.listUser()}" border="1">
+        <h:dataTable var="user"  value="#{accountController.listUser()}" border="1" >
                     <h:column>
                         <f:facet name="header">
                             User name
@@ -43,14 +44,36 @@
                         </f:facet>
                         #{user.subscription}
                     </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Subscription Month
+                        </f:facet>
+                        #{user.submonth}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Start Date
+                        </f:facet>
+                        #{user.startdate.date}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Expired Date
+                        </f:facet>
+                        #{user.enddate.date}
+                    </h:column>
                       <h:column>
                         <f:facet name="header">
                             Action
                         </f:facet>
-                       
+                          <h:form>
+                          <h:commandLink value="Delete" action="#{accountController.deleteUser(user)}"/>
+                          </h:form>
                     </h:column>
+                    
         </h:dataTable>
                  <br></br><br></br>
+                 </div>
                  </ui:define>
             </ui:composition>
     </h:body>

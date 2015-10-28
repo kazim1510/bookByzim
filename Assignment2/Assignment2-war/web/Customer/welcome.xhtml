@@ -12,13 +12,14 @@
          <ui:composition template="common.xhtml">	
              <ui:define name="content">
         <h:form>
+            <div id="content">
             <br></br><br></br>
-            Welcome &nbsp;
-            <h:outputText id="username" value="#{sessionController.account.username}"/>
-            &nbsp;&nbsp; Start Date:&nbsp;
+            <h4> Welcome &nbsp;
+                <h:outputText id="username" value="#{sessionController.account.username}"/>
+            &nbsp;|&nbsp; Start Date:&nbsp;
             <h:outputText id="startdate" value="#{sessionController.account.startdate}"/>
-             &nbsp;&nbsp; End Date:&nbsp;
-             <h:outputText id="enddate" value="#{sessionController.account.enddate}"/>
+             &nbsp;|&nbsp; End Date:&nbsp;
+             <h:outputText id="enddate" value="#{sessionController.account.enddate}"/></h4>
              <br></br><br></br>
             <h:dataTable var="item"  value="#{itemController.listItem(sessionController.account.username)}" border="1">
                     <h:column>
@@ -32,19 +33,15 @@
                             Item Description
                         </f:facet>
                         #{item.itemDescp}
-                    </h:column>
-                <h:column>
+                    </h:column> 
+                 <h:column>
                         <f:facet name="header">
                             Action
                         </f:facet>
-                        
-                    </h:column>
-                 
+                       
+                    </h:column> 
         </h:dataTable>
-            
-            
-           
-    
+            </div>
         </h:form>
              </ui:define>
          </ui:composition>

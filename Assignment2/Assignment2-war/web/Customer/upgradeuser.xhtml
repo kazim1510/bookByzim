@@ -12,16 +12,24 @@
     <h:body>
          <ui:composition template="common.xhtml">	
              <ui:define name="content">
+                 <div id="content">
                  <br></br><br></br>
        <h:form>
+        <h:panelGrid columns="2" cellpadding="5">
         <label> Subscription : </label>
-                <p:selectOneMenu value="#{sessionController.account.subscription}">
+        <p:selectOneMenu value="#{sessionController.account.subscription}" style="width: 170px">
    			<f:selectItem itemValue="free" itemLabel="free" />
    			<f:selectItem itemValue="standard" itemLabel="standard" />
    			<f:selectItem itemValue="premium" itemLabel="premium" />
    		</p:selectOneMenu>
+        
+        <lable>Month :</lable>
+        <p:spinner id="submonth" value="#{sessionController.account.submonth}" min="0" max="12" />
+        
         <p:commandButton value="upgrade" action="#{accountController.upgradeUser(sessionController.account)}"/>
+        </h:panelGrid>
         </h:form>
+                 </div>
                  <br></br><br></br>
              </ui:define>
          </ui:composition>

@@ -8,11 +8,15 @@ package com.bookstore.model;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
+import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
+
 /**
- *
+ * A model object for user accounts, storing their username, password,
+ * full name, email, date of birth, subscription month and subscription type.
+ * 
  * @author HP
  */
 @XmlRootElement
@@ -21,11 +25,15 @@ public class Account implements Serializable{
     
     
     private String username;
+    
     private String password;
     private String Fullname;
     private String email;
+     
     private Date dob;
+       
     private String subscription;
+     
     private int submonth;
     private Date startdate;
     private Date enddate;

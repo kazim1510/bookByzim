@@ -11,46 +11,38 @@
     <h:body>
         <ui:composition template="common.xhtml">
             <ui:define name="content">
-                <div id="content">
+            <div id="content">    
         <h:form>
             <h:panelGrid columns="2" cellpadding="5">
-                
                 <label>Full Name : </label>
-                <p:inputText id="firstname" value="#{accountController.account.fullname}" required="true" requiredMessage=" Firstname is required"/>
-                
-                
+                <p:inputText id="firstname" value="#{accountController.account.fullname}"/>
+                                
                 <label>User Name:</label>
-                <p:inputText id="username" value="#{accountController.account.username}" required="true" requiredMessage=" Username is required"/>
-                
-                
+                <p:inputText id="username" value="#{accountController.account.username}"/>
+                                
                 <label>Password :</label>
-                <p:password id="password" value="#{accountController.account.password}" required="true" requiredMessage=" Password is required"/>
-                
-                
+                <p:password id="password" value="#{accountController.account.password}"/>
+                                
                 <label>Email :</label>
-                <p:inputText id="email" required="true" label="email" value="#{accountController.account.email}"/>
-               
-                
-                <label>Date of Birth:</label>
-                <p:calendar id="dob" value="#{accountController.account.dob}" required="true" requiredMessage=" DOB is required"/>
+                <p:inputText id="email" value="#{accountController.account.email}"/>
+                               
+                <label>Date of Birth :</label>
+                <p:calendar id="dob" value="#{accountController.account.dob}"/>
            
-                
-                <label> Subscription : </label>
-                <p:selectOneMenu value="#{accountController.account.subscription}">
+                <label> Subscription Type: </label>
+                <p:selectOneMenu value="#{accountController.account.subscription}" style="width: 160px">
    			<f:selectItem itemValue="free" itemLabel="free" />
    			<f:selectItem itemValue="standard" itemLabel="standard" />
    			<f:selectItem itemValue="premium" itemLabel="premium" />
    		</p:selectOneMenu>
-                <label>Sub month:</label>
-                <p:inputText id="submonth" value="#{accountController.account.submonth}" required="true" requiredMessage=" Subscription month is required"/>
+              
+                <h:outputLabel for="submonth" value="Months: " />
+                <p:spinner id="submonth" value="#{accountController.account.submonth}" min="0" max="12" />
                 
-
-                <p:commandButton value="Signup" action="#{accountController.signUpUser()}"/>
-            
+                <p:commandButton value="Signup" action="#{accountController.signUpUser()}" style="width: 160px"/>
             </h:panelGrid> 
         </h:form>
-     
-                </div> 
+            </div>
       </ui:define>     			
       </ui:composition> 
     </h:body>

@@ -9,7 +9,8 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 /**
- *
+ * A model object for user Items, storing their itemId, itemName anditemDesc.
+ * 
  * @author HP
  */
 @Entity
@@ -60,18 +61,6 @@ public class Item implements Serializable{
     public void setItemDescp(String itemDescp) {
         this.itemDescp = itemDescp;
     }
-
-    /*
-@ManyToOne
-
-    public Membership getMembership() {
-        return membership;
-    }
-
-    public void setMembership(Membership membership) {
-        this.membership = membership;
-    }
-    */
 
     public String getMembership() {
         return membership;

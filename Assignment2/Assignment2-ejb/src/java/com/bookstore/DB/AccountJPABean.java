@@ -60,8 +60,10 @@ public class AccountJPABean implements AccountBeanRemote{
     public void update(Account account) {
         
         String type = account.getSubscription();
+        int month= account.getSubmonth();
         account = get(account.getUsername());
         account.setSubscription(type);
+        account.setSubmonth(month);
         em.merge(account);
         em.flush();
     }
@@ -84,7 +86,10 @@ public class AccountJPABean implements AccountBeanRemote{
 
     @Override
     public void delete(Account account) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        account = get(account.getUsername());
+        em.remove(account);
+        em.flush();
+        
     }
 
     @Override

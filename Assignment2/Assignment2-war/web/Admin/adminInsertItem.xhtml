@@ -12,11 +12,10 @@
     <h:body>
          <ui:composition template="common.xhtml">	
              <ui:define name="content">
+                 <div id="content">
                  <br></br><br></br>
                  <h:form>
             <h:panelGrid columns="2" cellpadding="5">
-                
-                
                 
                 <label>Item name : </label>
                 <p:inputText id="itemname" value="#{itemController.item.itemName}" required="true" requiredMessage=" Itemname is required."/>
@@ -26,7 +25,7 @@
                 <p:inputText id="itemdesc" value="#{itemController.item.itemDescp}" required="true" requiredMessage=" Itemdes is required."/>
                   
                 <label> Subscription : </label>
-                <p:selectOneMenu value="#{itemController.item.membership}">
+                <p:selectOneMenu value="#{itemController.item.membership}" style="width: 160px">
    			<f:selectItem itemValue="free" itemLabel="free" />
    			<f:selectItem itemValue="standard" itemLabel="standard" />
    			<f:selectItem itemValue="premium" itemLabel="premium" />
@@ -37,6 +36,7 @@
             </h:panelGrid> 
         </h:form>
                  <br></br><br></br>
+                 </div>
              </ui:define>
          </ui:composition>
     </h:body>
