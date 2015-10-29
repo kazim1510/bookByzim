@@ -6,8 +6,10 @@
 package com.bookstore.DB;
 
 import com.bookstore.model.Account;
+import com.bookstore.utility.DateUtil;
 import com.bookstore.utility.Sha;
 import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +21,7 @@ import javax.enterprise.inject.Default;
 import javax.persistence.*;
 
 /**
- *
+ * Implementation of Account bean
  * @author HP
  */
 
@@ -35,7 +37,12 @@ public class AccountJPABean implements AccountBeanRemote{
     @Override
     public void create(Account account) {
         try {
-            account.setPassword(Sha.hash256(account.getPassword()));
+            account.setPassword(Sha.hash256(account.getPassword()));   
+            account.setStartdate(new Date());
+            Date enddate = DateUtil.addMonths(account.getStartdate(), account.getSubmonth());
+            account.setStartdate(new Date());
+            account.setEnddate(enddate);
+            account.setRole("user");
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(AccountJPABean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -64,6 +71,9 @@ public class AccountJPABean implements AccountBeanRemote{
         account = get(account.getUsername());
         account.setSubscription(type);
         account.setSubmonth(month);
+        account.setStartdate(new Date());
+        Date enddate = DateUtil.addMonths(account.getStartdate(), account.getSubmonth());
+        account.setEnddate(enddate);
         em.merge(account);
         em.flush();
     }

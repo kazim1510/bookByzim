@@ -26,7 +26,7 @@
         <lable>Month :</lable>
         <p:spinner id="submonth" value="#{sessionController.account.submonth}" min="0" max="12" />
         
-        <p:commandButton value="upgrade" action="#{accountController.upgradeUser(sessionController.account)}"/>
+        <p:commandButton value="upgrade" action="#{accountController.upgradeUser(sessionController)}"/>
         </h:panelGrid>
         </h:form>
                  </div>

@@ -11,20 +11,21 @@
     <h:body>
          <ui:composition template="common.xhtml">	
          <ui:define name="content">
-        <h:form>
-            <div id="content">
+             <div id="content">
+        <h:form id="form">
             <h:panelGrid columns="2" cellpadding="5">
                 <lable>Username:</lable>
                 <p:inputText id="username" value="#{accountController.account.username}"/>
                 <lable>Password:</lable>
                 <p:password id="password" value="#{accountController.account.password}"/>
                 <f:facet name="footer">
-                    <p:commandButton value="Login" action="#{accountController.login(sessionController)}"/>
+                    <p:commandButton value="Login" update="form" action="#{accountController.login(sessionController)}"/>
                 </f:facet>
             </h:panelGrid>
             <h:messages/>
-            </div>
+            
         </h:form>
+        </div>
          </ui:define>
          </ui:composition>    
     </h:body>

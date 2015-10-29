@@ -49,7 +49,7 @@ public class AccountController implements Serializable{
              Account acc =  accountBeanRemote.get(account.getUsername());
             
             sessionController.setAccount(acc);
-            if(!acc.getSubscription().equals("Admin")){
+            if(acc.getRole().equals("user")){
                 return "/Customer/welcome?faces-redirect=true";
             }
             else{
@@ -68,11 +68,6 @@ public class AccountController implements Serializable{
      * @return
      */
     public String signUpUser(){
-      
-        account.setStartdate(new Date());
-        Date enddate = AccountController.addMonths(account.getStartdate(), account.getSubmonth());
-        account.setStartdate(new Date());
-        account.setEnddate(enddate);
         accountBeanRemote.create(account);
         return "/index?faces-redirect=true";
         
@@ -111,8 +106,8 @@ public class AccountController implements Serializable{
      * @param account
      * @return
      */
-    public String upgradeUser(Account account){
-        accountBeanRemote.update(account);
+    public String upgradeUser(SessionController sessionController){
+        accountBeanRemote.update(sessionController.getAccount());
         return "/Customer/welcome?faces-redirect=true";
     }
      /**
@@ -131,18 +126,6 @@ public class AccountController implements Serializable{
      */
     public String changePassword(Account account){
         accountBeanRemote.updatePassword(account);
-        return "/index?faces-redirect=true";
-    }
-    
-    
-    public static Date addMonths(Date dateValue, int months){
-
-		Calendar calendar = Calendar.getInstance();		
-		calendar.setTime(dateValue);
-		calendar.add(Calendar.MONTH, + months);
-		dateValue = calendar.getTime();
-		return  dateValue;
-	}
-   
-    
+        return "/Customer/welcome?faces-redirect=true";
+    }   
 }

@@ -11,6 +11,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import org.hibernate.validator.constraints.Email;
 
 
 /**
@@ -25,20 +26,17 @@ public class Account implements Serializable{
     
     
     private String username;
-    
     private String password;
     private String Fullname;
-    private String email;
-     
+    private String email;   
     private Date dob;
-       
     private String subscription;
-     
     private int submonth;
     private Date startdate;
     private Date enddate;
+    private String role;
     
-    public Account(String username, String password, String Fullname, String email, Date dob, String subscription, int submonth, Date startdate, Date enddate) {
+    public Account(String username, String password, String Fullname, String email, Date dob, String subscription, int submonth, Date startdate, Date enddate,String role) {
         this.username = username;
         this.password = password;
         this.Fullname = Fullname;
@@ -48,6 +46,7 @@ public class Account implements Serializable{
         this.submonth = submonth;
         this.startdate = new Date();
         this.enddate = enddate;
+        this.role=role;
        
     }
     public Account() {
@@ -79,6 +78,14 @@ public class Account implements Serializable{
         this.password = password;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public String getFullname() {
         return Fullname;
     }
@@ -90,7 +97,7 @@ public class Account implements Serializable{
     public String getEmail() {
         return email;
     }
-
+    
     public void setEmail(String email) {
         this.email = email;
     }
@@ -100,9 +107,7 @@ public class Account implements Serializable{
         return subscription;
     }
 
-   
-
-    public void setSubscription(String subscription) {
+   public void setSubscription(String subscription) {
         this.subscription = subscription;
     }
 

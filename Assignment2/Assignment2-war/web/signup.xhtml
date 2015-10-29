@@ -12,35 +12,55 @@
         <ui:composition template="common.xhtml">
             <ui:define name="content">
             <div id="content">    
-        <h:form>
-            <h:panelGrid columns="2" cellpadding="5">
+        <h:form id="form">
+            <h:panelGrid columns="3" cellpadding="5">
+                
                 <label>Full Name : </label>
-                <p:inputText id="firstname" value="#{accountController.account.fullname}"/>
-                                
+                <p:inputText id="firstname" value="#{accountController.account.fullname}" required="true"
+                             requiredMessage="Full name is required"/>
+                <p:message id="m1" for="firstname" style="color:red"/>
+                
                 <label>User Name:</label>
-                <p:inputText id="username" value="#{accountController.account.username}"/>
-                                
+                <p:inputText id="username" value="#{accountController.account.username}" required="true"
+                requiredMessage="Username is required"/>
+                <p:message id="m2" for="username" style="color:red"/>
+                
                 <label>Password :</label>
-                <p:password id="password" value="#{accountController.account.password}"/>
-                                
+                <p:password id="password" value="#{accountController.account.password}" required="true"
+                requiredMessage="password is required"/>
+                <p:message id="m3" for="password" style="color:red"/>
+                
                 <label>Email :</label>
-                <p:inputText id="email" value="#{accountController.account.email}"/>
-                               
+                <p:inputText id="email" value="#{accountController.account.email}" required="true"
+                requiredMessage="email is required" validatorMessage="Invalid email format">
+                <f:validateRegex
+		pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                </p:inputText>
+                <p:message id="m4" for="email" style="color:red"/>
+                
                 <label>Date of Birth :</label>
-                <p:calendar id="dob" value="#{accountController.account.dob}"/>
-           
+                <p:calendar id="dob" value="#{accountController.account.dob}" required="true"
+                requiredMessage="DateofBirth is required is required"/>
+                <p:message id="m5" for="dob" style="color:red"/>
+                
                 <label> Subscription Type: </label>
-                <p:selectOneMenu value="#{accountController.account.subscription}" style="width: 160px">
+                <p:selectOneMenu id="sub" value="#{accountController.account.subscription}" style="width: 160px" required="true"
+                requiredMessage="Selection Menu is required">
    			<f:selectItem itemValue="free" itemLabel="free" />
    			<f:selectItem itemValue="standard" itemLabel="standard" />
    			<f:selectItem itemValue="premium" itemLabel="premium" />
    		</p:selectOneMenu>
-              
-                <h:outputLabel for="submonth" value="Months: " />
-                <p:spinner id="submonth" value="#{accountController.account.submonth}" min="0" max="12" />
+                <p:message id="m6" for="sub" style="color:red"/>
                 
-                <p:commandButton value="Signup" action="#{accountController.signUpUser()}" style="width: 160px"/>
-            </h:panelGrid> 
+                <h:outputLabel for="submonth" value="Months: " />
+                
+                <p:spinner id="submonth" value="#{accountController.account.submonth}" min="1" max="12" required="true"
+                requiredMessage="subscription month is required"/>
+                <p:message id="m7" for="submonth" style="color:red"/>
+                
+                <p:commandButton value="Signup" update="form" action="#{accountController.signUpUser()}" style="width: 160px"/>
+            
+            </h:panelGrid>
         </h:form>
             </div>
       </ui:define>     			
