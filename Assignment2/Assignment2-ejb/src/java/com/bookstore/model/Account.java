@@ -54,6 +54,7 @@ public class Account implements Serializable{
     }
 
     @Id
+    @Size(min=3,max=10)
     public String getUsername() {
         return username;
     }
@@ -67,11 +68,11 @@ public class Account implements Serializable{
      public void setDob(Date dob) {
         this.dob = dob;
     }
-
+     
     public void setUsername(String username) {
         this.username = username;
     }
-
+    @Size(min=6,max=10)
     public String getPassword() {
         return password;
     }
@@ -124,7 +125,7 @@ public class Account implements Serializable{
     public Date getStartdate() {
         return startdate;
     }
-
+    
     public void setStartdate(Date startdate) {
         this.startdate = startdate;
     }
