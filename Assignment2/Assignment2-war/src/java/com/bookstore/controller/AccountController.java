@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 /**
  * This backing bean manages login, logout, register, upgrade user, delete user
  * list user and change password.
- * @author HP
+ * @author Kazim
  */
 
 @Named
@@ -68,9 +68,15 @@ public class AccountController implements Serializable{
      * @return
      */
     public String signUpUser(){
+        FacesContext context = FacesContext.getCurrentInstance();
+        try{
         accountBeanRemote.create(account);
         return "/index?faces-redirect=true";
-        
+        }
+        catch(Exception e){
+            context.addMessage(null, new FacesMessage("Username is already exist"));
+            return null;
+        }
     }
      /**
      * Logs out the current user via the container and also clears the
@@ -107,7 +113,8 @@ public class AccountController implements Serializable{
      * @return
      */
     public String upgradeUser(SessionController sessionController){
-        accountBeanRemote.update(sessionController.getAccount());
+        Account account = accountBeanRemote.update(sessionController.getAccount());
+        sessionController.setAccount(account);
         return "/Customer/welcome?faces-redirect=true";
     }
      /**

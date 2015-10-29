@@ -8,6 +8,7 @@ package com.bookstore.model;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
+import javax.validation.constraints.Past;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -58,6 +59,7 @@ public class Account implements Serializable{
     }
     
     @Temporal(TemporalType.DATE)
+    @Past
     public Date getDob() {
         return dob;
     }

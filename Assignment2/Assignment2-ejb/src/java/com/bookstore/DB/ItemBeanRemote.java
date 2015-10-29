@@ -21,18 +21,31 @@ public interface ItemBeanRemote extends Serializable{
      * @param item
      */
     public void create(Item item);
-     
-    public Item get(int id);
+    /**
+     * get item for ItemId.
+     * @param Id.
+     * @return item.
+     */
+    public Item getItem(String id);
      /**
-     * get item list for user.
+     * get item list for Item.
      * @param username.
      * @return list of item.
      */
     public List<Item> getList(String username);
-    
+    /**
+     * Update new Item.
+     * @param Item
+     */
     public void update(Item item);
-    
-    public void delete(Item item);
-  
-    
+     /**
+     * delete item.
+     * @param item
+     */
+    public void delete(String itemId);
+     /**
+     * Retrieve a list of Items.
+     * @return the list of items
+     */
+    public List<Item> getAllList();
 }

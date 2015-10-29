@@ -33,7 +33,6 @@ public class AccountJPABean implements AccountBeanRemote{
     @PersistenceContext
     private EntityManager em;
     
-
     @Override
     public void create(Account account) {
         try {
@@ -56,16 +55,14 @@ public class AccountJPABean implements AccountBeanRemote{
         Account account= em.find(Account.class, username);
         return account;
         }
-        catch(Exception e)
-        {
+        catch(Exception e){
             System.out.println("Error");
             return null;
         }
     }
 
     @Override
-    public void update(Account account) {
-        
+    public Account update(Account account) {
         String type = account.getSubscription();
         int month= account.getSubmonth();
         account = get(account.getUsername());
@@ -76,11 +73,11 @@ public class AccountJPABean implements AccountBeanRemote{
         account.setEnddate(enddate);
         em.merge(account);
         em.flush();
+        return account;
     }
     
     @Override
     public void updatePassword(Account account) {
-        
         String password = account.getPassword();
         account = get(account.getUsername());
         account.setPassword(password);
@@ -93,13 +90,11 @@ public class AccountJPABean implements AccountBeanRemote{
         em.flush();
     }
     
-
     @Override
     public void delete(Account account) {
         account = get(account.getUsername());
         em.remove(account);
         em.flush();
-        
     }
 
     @Override

@@ -14,12 +14,9 @@ import javax.enterprise.context.RequestScoped;
 import javax.inject.Named;
 
 /**
- * This backing bean manages request for upload new book and get list of books. 
- * It is request-scoped so that form inputs are not
- * remembered for the whole session. A separate session-scoped backing bean
- * called SessionController is used to store the currently logged in user.
- * 
- * @author HP
+ * This backing bean manages request for upload new book and get list of books.
+ *  and Delete books
+ * @author kazim
  */
 @Named
 @RequestScoped
@@ -49,6 +46,25 @@ public class ItemController implements Serializable{
      */
     public List<Item> listItem(String username){
         return itemremote.getList(username);
+    }
+    /**
+     * get the list of Item.
+     * @return list of items.
+     * 
+     */
+    public List<Item> listAll(){
+        return itemremote.getAllList();
+    }
+    
+    /**
+     * Delete Item.
+     * @param itemId
+     * @return
+     */
+    public String deleteItem(String itemId)
+    {
+        itemremote.delete(itemId);
+        return "/Admin/listitem?faces-redirect=true";
     }
     
 }

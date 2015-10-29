@@ -27,7 +27,7 @@ public interface AccountBeanRemote extends Serializable{
      * delete user account.
      * @param account
      */
-    public void update(Account account);
+    public Account update(Account account);
      /**
      * change user password.
      * @param account

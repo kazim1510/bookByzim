@@ -31,15 +31,13 @@ public class ItemJPABean implements ItemBeanRemote{
    
     @Override
     public void create(Item item) {
-        //item.setMembership(membershipBeanRemote.get(item.getMembership().getSubsId()));
-        
         em.persist(item);
         em.flush();
     }
 
     @Override
-    public Item get(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Item getItem(String id) {
+       return em.find(Item.class, id);
     }
 
     @Override
@@ -80,7 +78,17 @@ public class ItemJPABean implements ItemBeanRemote{
     }
 
     @Override
-    public void delete(Item item) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void delete(String itemId) {
+        Item item = getItem(itemId);
+        em.remove(item);
+        em.flush();
+    }
+
+    
+    @Override
+    public List<Item> getAllList() {
+        String queryStr = "SELECT item FROM Item item";
+        TypedQuery<Item> query = em.createQuery(queryStr, Item.class);
+        return query.getResultList();
     }
 }

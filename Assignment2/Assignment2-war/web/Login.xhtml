@@ -13,11 +13,15 @@
          <ui:define name="content">
              <div id="content">
         <h:form id="form">
-            <h:panelGrid columns="2" cellpadding="5">
+            <h:panelGrid columns="3" cellpadding="5">
                 <lable>Username:</lable>
-                <p:inputText id="username" value="#{accountController.account.username}"/>
+                <p:inputText id="username" value="#{accountController.account.username}" required="true"
+                requiredMessage="Username is required"/>
+                <p:message id="m2" for="username" style="color:red"/>
                 <lable>Password:</lable>
-                <p:password id="password" value="#{accountController.account.password}"/>
+                <p:password id="password" value="#{accountController.account.password}" required="true"
+                requiredMessage="password is required"/>
+                <p:message id="m3" for="password" style="color:red"/>
                 <f:facet name="footer">
                     <p:commandButton value="Login" update="form" action="#{accountController.login(sessionController)}"/>
                 </f:facet>
