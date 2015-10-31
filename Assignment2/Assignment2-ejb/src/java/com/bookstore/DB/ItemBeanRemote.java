@@ -23,7 +23,7 @@ public interface ItemBeanRemote extends Serializable{
     public void create(Item item);
     /**
      * get item for ItemId.
-     * @param Id.
+     * @param id.
      * @return item.
      */
     public Item getItem(String id);
@@ -33,19 +33,22 @@ public interface ItemBeanRemote extends Serializable{
      * @return list of item.
      */
     public List<Item> getList(String username);
-    /**
-     * Update new Item.
-     * @param Item
-     */
-    public void update(Item item);
+   
      /**
      * delete item.
-     * @param item
+     * @param itemId
      */
+    
     public void delete(String itemId);
      /**
      * Retrieve a list of Items.
      * @return the list of items
      */
     public List<Item> getAllList();
+      /**
+     * update item.
+     * @param item
+     * @return item
+     */
+    public Item updateItem(Item item);
 }

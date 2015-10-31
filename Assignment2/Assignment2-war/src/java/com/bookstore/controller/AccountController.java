@@ -14,6 +14,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.inject.*;
 import javax.servlet.ServletException;
@@ -34,6 +35,7 @@ public class AccountController implements Serializable{
     public Account getAccount(){
         return account;
     }
+
     /**
      * Logs in the user via container-managed authentication and also
      * records the currently logged in user into the given session controller.
@@ -67,16 +69,9 @@ public class AccountController implements Serializable{
      * Register the new user.
      * @return
      */
-    public String signUpUser(){
-        FacesContext context = FacesContext.getCurrentInstance();
-        try{
+    public String signUpUser(){ 
         accountBeanRemote.create(account);
-        return "/index?faces-redirect=true";
-        }
-        catch(Exception e){
-            context.addMessage(null, new FacesMessage("Username is already exist"));
-            return null;
-        }
+        return "/signup?faces-redirect=true";       
     }
      /**
      * Logs out the current user via the container and also clears the

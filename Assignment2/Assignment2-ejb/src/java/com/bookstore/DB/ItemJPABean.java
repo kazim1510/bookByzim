@@ -9,11 +9,9 @@ import com.bookstore.model.Item;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
-import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Default;
-import javax.faces.context.FacesContext;
-import javax.inject.Inject;
 import javax.persistence.*;
+
 
 /**
  * Implementation of ItemBean interface.
@@ -73,8 +71,10 @@ public class ItemJPABean implements ItemBeanRemote{
     }
 
     @Override
-    public void update(Item item) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Item updateItem(Item item) {
+        em.merge(item);
+        em.flush();
+        return item;
     }
 
     @Override

@@ -54,13 +54,13 @@ public class Account implements Serializable{
     }
 
     @Id
-    @Size(min=3,max=10)
+   
     public String getUsername() {
         return username;
     }
     
     @Temporal(TemporalType.DATE)
-    @Past
+   
     public Date getDob() {
         return dob;
     }
@@ -72,7 +72,7 @@ public class Account implements Serializable{
     public void setUsername(String username) {
         this.username = username;
     }
-    @Size(min=6,max=10)
+    
     public String getPassword() {
         return password;
     }

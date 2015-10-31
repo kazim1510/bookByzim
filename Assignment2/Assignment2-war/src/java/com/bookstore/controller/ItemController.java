@@ -28,6 +28,9 @@ public class ItemController implements Serializable{
     public Item getItem() {
         return item;
     }
+     public void setItem(Item item) {
+        this.item = item;
+    }
     
     private Item item=new Item();
     /**
@@ -37,7 +40,7 @@ public class ItemController implements Serializable{
      */
     public String createItem(){
         itemremote.create(item);
-        return "/Admin/adminwelcome?faces-redirect=true";
+        return "/Admin/listitem?faces-redirect=true";
     }
     /**
      * get the list of books.
@@ -66,5 +69,18 @@ public class ItemController implements Serializable{
         itemremote.delete(itemId);
         return "/Admin/listitem?faces-redirect=true";
     }
+     /**
+     * Update Item.
+     * @param itemId
+     * @return
+     */
+    public String updateItem(Item item)
+    {
+        Item item1= itemremote.updateItem(item);
+        this.setItem(item1);
+        return "/Admin/listitem?faces-redirect=true";
+    }
+    
+    
     
 }

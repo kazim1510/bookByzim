@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>List of Items</title>
     </h:head>
@@ -11,9 +12,10 @@
          <ui:composition template="common.xhtml">	
              <ui:define name="content">
         <h:form>
-            <div id="content">
+            
             <br></br><br></br>
             <h:dataTable var="item"  value="#{itemController.listAll()}" border="1">
+                     
                     <h:column>
                         <f:facet name="header">
                             Item name
@@ -32,11 +34,38 @@
                         </f:facet>
                      
                          <h:commandLink value="Delete" action="#{itemController.deleteItem(item.itemId)}"/>
-                    
+                    &nbsp;<h:commandLink value="Update" action="#{itemController.setItem(item)}"/>
                     </h:column> 
         </h:dataTable>
-            </div>
+            
         </h:form>
+         <h:form id="form">
+            <h:inputHidden id="itemid" value="#{itemController.item.itemId}"/>
+            <h:panelGrid columns="3" cellpadding="5">
+                
+                <label>Item name : </label>
+                <p:inputText id="itemname" value="#{itemController.item.itemName}" 
+                             required="true" requiredMessage=" Itemname is required."/>
+              <p:message id="i1" for="itemname" style="color:red"/>
+                
+                <label>Item description:</label>
+                <p:inputText id="itemdesc" value="#{itemController.item.itemDescp}" 
+                             required="true" requiredMessage=" Itemdes is required."/>
+               <p:message id="i2" for="itemdesc" style="color:red"/> 
+                <label> Subscription : </label>
+                <p:selectOneMenu id="subid" value="#{itemController.item.membership}" 
+                                 style="width: 160px" required="true" requiredMessage="Subscription is required">
+   			<f:selectItem itemValue="free" itemLabel="free" />
+   			<f:selectItem itemValue="standard" itemLabel="standard" />
+   			<f:selectItem itemValue="premium" itemLabel="premium" />
+   		</p:selectOneMenu>
+                 <p:message id="i3" for="subid" style="color:red"/> 
+                 <p:commandButton value="Upload Item" update="form" action="#{itemController.createItem()}"/>
+                 <p:commandButton value="Update Item" update="form" action="#{itemController.updateItem(itemController.item)}"/>
+                 </h:panelGrid>
+        
+        </h:form>
+                 <br></br><br></br>
              </ui:define>
          </ui:composition>
     </h:body>
