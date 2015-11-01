@@ -10,10 +10,16 @@
     </h:head>
     <h:body>
          <ui:composition template="common.xhtml">	
-         <ui:define name="content">
-             <div id="content">
+         <ui:define name="content">             
+            <div id="content">
+                <br></br><br></br>
         <h:form id="form">
-            <h:panelGrid columns="3" cellpadding="5">
+            <h:panelGrid columns="3" cellpadding="5" border="1">
+                 <f:facet name="header">
+                 <p:row>
+                 <p:column colspan="3">LOGIN</p:column>
+                 </p:row>
+                   </f:facet>
                 <lable>Username:</lable>
                 <p:inputText id="username" value="#{accountController.account.username}" required="true"
                 requiredMessage="Username is required"/>
@@ -24,9 +30,11 @@
                 <p:message id="m3" for="password" style="color:red"/>
                 <f:facet name="footer">
                     <p:commandButton value="Login" update="form" action="#{accountController.login(sessionController)}"/>
+                    &nbsp;Not Registered?&nbsp;<h:link value="Signup" outcome="signup" />
                 </f:facet>
+                
             </h:panelGrid>
-            <h:messages/>
+            <h:messages globalOnly="true"/>
             
         </h:form>
         </div>

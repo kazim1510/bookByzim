@@ -15,7 +15,12 @@
                  <div id="content">
                  <br></br><br></br>
        <h:form>
-        <h:panelGrid columns="2" cellpadding="5">
+           <h:panelGrid columns="2" cellpadding="5" border="1">
+            <f:facet name="header">
+                 <p:row>
+                 <p:column colspan="3"></p:column>
+                 </p:row>
+                   </f:facet>
         <label> Subscription : </label>
         <p:selectOneMenu value="#{sessionController.account.subscription}" style="width: 170px">
    			<f:selectItem itemValue="free" itemLabel="free" />
@@ -24,9 +29,10 @@
    		</p:selectOneMenu>
         
         <lable>Month :</lable>
-        <p:spinner id="submonth" value="#{sessionController.account.submonth}" min="0" max="12" />
-        
+        <p:spinner id="submonth" value="#{sessionController.account.submonth}" min="1" max="12" />
+        <f:facet name="footer">
         <p:commandButton value="upgrade" action="#{accountController.upgradeUser(sessionController)}"/>
+        </f:facet>
         </h:panelGrid>
         </h:form>
                  </div>

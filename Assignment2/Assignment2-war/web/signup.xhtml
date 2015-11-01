@@ -13,7 +13,12 @@
             <ui:define name="content">
             <div id="content">    
         <h:form id="form">
-            <h:panelGrid columns="3" cellpadding="5">
+            <h:panelGrid columns="3" cellpadding="5" border="1">
+                <f:facet name="header">
+                 <p:row>
+                 <p:column colspan="3">SIGNUP</p:column>
+                 </p:row>
+                   </f:facet>
                 
                 <label>Full Name : </label>
                 <p:inputText id="firstname" value="#{accountController.account.fullname}" required="true"
@@ -57,12 +62,12 @@
                 <p:spinner id="submonth" value="#{accountController.account.submonth}" min="1" max="12" required="true"
                 requiredMessage="subscription month is required"/>
                 <p:message id="m7" for="submonth" style="color:red"/>
-                
+                <f:facet name="footer">
                 <p:commandButton value="Signup" update="form" action="#{accountController.signUpUser()}" style="width: 160px"/>
-               
+                </f:facet>
             
             </h:panelGrid>
-            <h:messages/>
+            <h:messages globalOnly="true"/>
         </h:form>
             </div>
       </ui:define>     			

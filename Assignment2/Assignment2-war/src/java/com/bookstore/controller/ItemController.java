@@ -39,8 +39,11 @@ public class ItemController implements Serializable{
      * 
      */
     public String createItem(){
-        itemremote.create(item);
-        return "/Admin/listitem?faces-redirect=true";
+      
+      item.setItemId(null);
+      itemremote.create(item);
+      return "/Admin/listitem?faces-redirect=true";
+        
     }
     /**
      * get the list of books.
@@ -71,7 +74,7 @@ public class ItemController implements Serializable{
     }
      /**
      * Update Item.
-     * @param itemId
+     * @param item
      * @return
      */
     public String updateItem(Item item)

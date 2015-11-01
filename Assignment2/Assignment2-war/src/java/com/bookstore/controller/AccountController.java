@@ -8,13 +8,10 @@ package com.bookstore.controller;
 import com.bookstore.DB.AccountBeanRemote;
 import com.bookstore.model.Account;
 import java.io.Serializable;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
-import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.inject.*;
 import javax.servlet.ServletException;
@@ -71,7 +68,7 @@ public class AccountController implements Serializable{
      */
     public String signUpUser(){ 
         accountBeanRemote.create(account);
-        return "/signup?faces-redirect=true";       
+        return "/Login?faces-redirect=true";       
     }
      /**
      * Logs out the current user via the container and also clears the
@@ -104,7 +101,7 @@ public class AccountController implements Serializable{
     }
      /**
      * Change subscription of logged user.
-     * @param account
+     * @param sessionController
      * @return
      */
     public String upgradeUser(SessionController sessionController){
