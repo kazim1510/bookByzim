@@ -37,6 +37,8 @@ public class ItemJPABean implements ItemBeanRemote{
     public Item getItem(String id) {
        return em.find(Item.class, id);
     }
+    
+    
 
     @Override
     public List<Item> getList(String Username) {
@@ -72,9 +74,14 @@ public class ItemJPABean implements ItemBeanRemote{
 
     @Override
     public Item updateItem(Item item) {
-        em.merge(item);
-        em.flush();
-        return item;
+        Item item1;
+        item1 = getItem(item.getItemId());
+        item1.setItemName(item.getItemName());
+        item1.setItemDescp(item.getItemDescp());
+        item1.setMembership(item.getMembership());
+        //em.merge(item);
+        //em.flush();
+        return item1;
     }
 
     @Override

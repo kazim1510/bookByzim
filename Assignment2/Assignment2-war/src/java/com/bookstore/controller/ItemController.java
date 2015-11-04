@@ -31,8 +31,13 @@ public class ItemController implements Serializable{
      public void setItem(Item item) {
         this.item = item;
     }
-    
+   
     private Item item=new Item();
+
+  
+    
+    
+    
     /**
      * Methode for upload new book.
      * @return
@@ -47,6 +52,7 @@ public class ItemController implements Serializable{
     }
     /**
      * get the list of books.
+     * @param username
      * @return list of books.
      * 
      */
@@ -78,12 +84,10 @@ public class ItemController implements Serializable{
      * @return
      */
     public String updateItem(Item item)
-    {
+    {   
+        
         Item item1= itemremote.updateItem(item);
         this.setItem(item1);
         return "/Admin/listitem?faces-redirect=true";
-    }
-    
-    
-    
+ }
 }

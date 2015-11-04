@@ -8,6 +8,7 @@ package com.bookstore.controller;
 import com.bookstore.DB.AccountBeanRemote;
 import com.bookstore.model.Account;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -32,33 +33,41 @@ public class AccountController implements Serializable{
     public Account getAccount(){
         return account;
     }
-
+    public Date getToday() {
+        return new Date();
+    }
     /**
      * Logs in the user via container-managed authentication and also
      * records the currently logged in user into the given session controller.
      * @param sessionController the session controller
      * @return 
      */
-    public String login(SessionController sessionController){
+    public String login(SessionController sessionController) throws ServletException{
         
         FacesContext context = FacesContext.getCurrentInstance();
         
         try{
+            if(accountBeanRemote.getisLoginvalue(account.getUsername()) == 1)
+                return "/error?faces-redirect=true";
+            
             getRequest().login(account.getUsername(), account.getPassword());
              Account acc =  accountBeanRemote.get(account.getUsername());
-            
+             acc.setIsLogin(1);
+             accountBeanRemote.updateLogin(acc);
             sessionController.setAccount(acc);
-            if(acc.getRole().equals("user")){
+            if(acc.getGroupname().equals("Users")){
                 return "/Customer/welcome?faces-redirect=true";
             }
             else{
                 return "/Admin/adminwelcome?faces-redirect=true";
             }
+            
         }
         catch(Exception e)
         {
             System.out.println(e);
             context.addMessage(null, new FacesMessage("Invalid username or password"));
+            this.logout(sessionController);
             return null;
         }
     }
@@ -67,8 +76,15 @@ public class AccountController implements Serializable{
      * @return
      */
     public String signUpUser(){ 
+        FacesContext context = FacesContext.getCurrentInstance();
+        try{
         accountBeanRemote.create(account);
-        return "/Login?faces-redirect=true";       
+        return "/Login?faces-redirect=true";  }
+        catch(Exception e)
+        {
+            context.addMessage(null, new FacesMessage("Username already exist"));
+            return null;
+        }
     }
      /**
      * Logs out the current user via the container and also clears the
@@ -78,6 +94,9 @@ public class AccountController implements Serializable{
      * @return
      */
     public String logout(SessionController sessionController) throws ServletException{
+       Account acc =  accountBeanRemote.get(sessionController.getAccount().getUsername());
+        acc.setIsLogin(0);
+        accountBeanRemote.updateLogin(acc);
         sessionController.setAccount(null);
         getRequest().logout();
         return "/Login?faces-redirect=true";
@@ -105,7 +124,7 @@ public class AccountController implements Serializable{
      * @return
      */
     public String upgradeUser(SessionController sessionController){
-        Account account = accountBeanRemote.update(sessionController.getAccount());
+        account = accountBeanRemote.update(sessionController.getAccount());
         sessionController.setAccount(account);
         return "/Customer/welcome?faces-redirect=true";
     }
@@ -126,5 +145,7 @@ public class AccountController implements Serializable{
     public String changePassword(Account account){
         accountBeanRemote.updatePassword(account);
         return "/Customer/welcome?faces-redirect=true";
-    }   
+    }
+    
+    
 }

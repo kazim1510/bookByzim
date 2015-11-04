@@ -8,11 +8,8 @@ package com.bookstore.model;
 import java.io.Serializable;
 import java.util.Date;
 import javax.persistence.*;
-import javax.validation.constraints.Past;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.Min;
 import javax.xml.bind.annotation.XmlRootElement;
-import org.hibernate.validator.constraints.Email;
 
 
 /**
@@ -35,9 +32,11 @@ public class Account implements Serializable{
     private int submonth;
     private Date startdate;
     private Date enddate;
-    private String role;
+    private String groupname;
+    private int isLogin = 0;
+    private int version =0;
     
-    public Account(String username, String password, String Fullname, String email, Date dob, String subscription, int submonth, Date startdate, Date enddate,String role) {
+    public Account(String username, String password, String Fullname, String email, Date dob, String subscription, int submonth, Date startdate, Date enddate,String groupname, int isLogin) {
         this.username = username;
         this.password = password;
         this.Fullname = Fullname;
@@ -47,8 +46,8 @@ public class Account implements Serializable{
         this.submonth = submonth;
         this.startdate = new Date();
         this.enddate = enddate;
-        this.role=role;
-       
+        this.groupname=groupname;
+        this.isLogin = isLogin;
     }
     public Account() {
     }
@@ -58,10 +57,8 @@ public class Account implements Serializable{
     public String getUsername() {
         return username;
     }
-    
     @Temporal(TemporalType.DATE)
-   
-    public Date getDob() {
+     public Date getDob() {
         return dob;
     }
 
@@ -81,14 +78,13 @@ public class Account implements Serializable{
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
+    public String getGroupname() {
+        return groupname;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setGroupname(String groupname) {
+        this.groupname = groupname;
     }
-
     public String getFullname() {
         return Fullname;
     }
@@ -113,7 +109,7 @@ public class Account implements Serializable{
    public void setSubscription(String subscription) {
         this.subscription = subscription;
     }
-
+    
     public int getSubmonth() {
         return submonth;
     }
@@ -136,6 +132,22 @@ public class Account implements Serializable{
 
     public void setEnddate(Date enddate) {
         this.enddate = enddate;
+    }
+
+    public int getIsLogin() {
+        return isLogin;
+    }
+
+    public void setIsLogin(int isLogin) {
+        this.isLogin = isLogin;
+    }
+    @Version
+    public int getVersion() {
+        return version;
+    }
+
+    public void setVersion(int version) {
+        this.version = version;
     }
     
   

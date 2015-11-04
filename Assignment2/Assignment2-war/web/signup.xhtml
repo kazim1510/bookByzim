@@ -44,8 +44,9 @@
                 <p:message id="m4" for="email" style="color:red"/>
                 
                 <label>Date of Birth :</label>
-                <p:calendar id="dob" value="#{accountController.account.dob}" required="true"
-                requiredMessage="DateofBirth is required is required"/>
+                <p:calendar id="dob" maxdate="#{accountController.today}" value="#{accountController.account.dob}" required="true"
+                requiredMessage="DateofBirthis required"/>
+                
                 <p:message id="m5" for="dob" style="color:red"/>
                 
                 <label> Subscription Type: </label>

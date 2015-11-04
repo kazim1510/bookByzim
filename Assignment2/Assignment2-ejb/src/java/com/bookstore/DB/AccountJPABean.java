@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
-import javax.enterprise.context.Dependent;
 import javax.enterprise.inject.Default;
 
 
@@ -33,6 +32,11 @@ public class AccountJPABean implements AccountBeanRemote{
     @PersistenceContext
     private EntityManager em;
     
+     @Override
+    public int getisLoginvalue(String id) {
+       return em.find(Account.class, id).getIsLogin();
+    }
+    
     @Override
     public void create(Account account) {
         try {
@@ -41,7 +45,7 @@ public class AccountJPABean implements AccountBeanRemote{
             Date enddate = DateUtil.addMonths(account.getStartdate(), account.getSubmonth());
             account.setStartdate(new Date());
             account.setEnddate(enddate);
-            account.setRole("user");
+            account.setGroupname("Users");
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(AccountJPABean.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -89,6 +93,13 @@ public class AccountJPABean implements AccountBeanRemote{
         em.merge(account);
         em.flush();
     }
+     @Override
+    public void updateLogin(Account account) {
+        int isLogin = account.getIsLogin();
+        account = get(account.getUsername());
+        account.setIsLogin(isLogin);
+    }
+    
     
     @Override
     public void delete(Account account) {

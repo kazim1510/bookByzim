@@ -26,7 +26,8 @@ import javax.inject.Named;
 public class SessionController implements Serializable{
 
     private Account account;
-
+   
+    
     
     public Account getAccount() {
         return account;
@@ -35,6 +36,8 @@ public class SessionController implements Serializable{
     public void setAccount(Account account) {
         this.account = account;
     }
+
+  
     
     
 }
