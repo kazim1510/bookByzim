@@ -14,24 +14,32 @@ import javax.inject.Named;
 /**
  * This backing bean remembers the details of the currently logged in user
  * and is session-scoped.
- * 
  * getAccount() should return null if and only if no user is currently
  * logged into this session.
  * 
- * @author HP
+ * @author kazim and bipin
  */
 
 @Named
 @SessionScoped
 public class SessionController implements Serializable{
 
-    private Account account;
-
-    public Account getAccount() {
+    /**
+     * The current account
+     */
+    Account account = new Account();
+    /**
+     * Get the current value of the Account.
+     * @return the current Account of the user 
+     */
+    public Account getAccount(){
         return account;
     }
-
+    /**
+     * Set the value of the Account.
+     * @param account
+     */
     public void setAccount(Account account) {
         this.account = account;
-    }    
+    }  
 }

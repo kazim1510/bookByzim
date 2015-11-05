@@ -19,17 +19,18 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/Login.xhtml</welcome-file>
+        <welcome-file>faces/login.xhtml</welcome-file>
     </welcome-file-list>
     
-    <login-config>
+ <login-config>
     <auth-method>FORM</auth-method>
     <realm-name>aipRealm</realm-name>
     <form-login-config>
-        <form-login-page>/faces/Login.xhtml</form-login-page>
-        <form-error-page>/faces/Login.xhtml</form-error-page>
+        <form-login-page>/faces/login.xhtml</form-login-page>
+        <form-error-page>/faces/login.xhtml</form-error-page>
     </form-login-config>
 </login-config>
+
  <security-role>
         <description>Logged in Users</description>
         <role-name>Users</role-name>
@@ -38,6 +39,7 @@
         <description>Admin Users</description>
         <role-name>Admins</role-name>
  </security-role>
+ 
     <security-constraint>
         <display-name>Administration Zone</display-name>
         <web-resource-collection>

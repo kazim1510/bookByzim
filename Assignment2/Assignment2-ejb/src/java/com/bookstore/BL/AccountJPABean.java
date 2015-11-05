@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bookstore.DB;
+package com.bookstore.BL;
 
 import com.bookstore.model.Account;
 import com.bookstore.utility.DateUtil;
@@ -21,7 +21,7 @@ import javax.persistence.*;
 
 /**
  * Implementation of Account bean
- * @author HP
+ * @author kazim and bipin
  */
 @Default
 @Stateless

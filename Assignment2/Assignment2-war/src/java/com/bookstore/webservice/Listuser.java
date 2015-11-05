@@ -5,7 +5,7 @@
  */
 package com.bookstore.webservice;
 
-import com.bookstore.DB.AccountBeanRemote;
+import com.bookstore.BL.AccountBeanRemote;
 import com.bookstore.model.Account;
 import java.util.List;
 import javax.ejb.EJB;

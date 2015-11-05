@@ -11,22 +11,17 @@ import javax.persistence.*;
 /**
  * A model object for user Items, storing their itemId, itemName anditemDesc.
  * 
- * @author HP
+ * @author kazim and bipin
  */
 @Entity
 public class Item implements Serializable{
-
-
     private String itemId;
     private String itemName;
-  
     private String itemDescp;
     private String membership;
     private int version;
-   
-  
     
-     public Item(String itemId, String itemName, String itemDescp, String membership) {
+    public Item(String itemId, String itemName, String itemDescp, String membership) {
         this.itemId = itemId;
         this.itemName = itemName;
         this.itemDescp = itemDescp;

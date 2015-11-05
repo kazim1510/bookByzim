@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bookstore.DB;
+package com.bookstore.BL;
 
 import com.bookstore.model.Item;
 import com.bookstore.utility.ConcurrentChangeDetected;
@@ -13,7 +13,7 @@ import javax.ejb.Remote;
 
 /**
  * ItemBean interface for CRUD access for item.
- * @author HP
+ * @author kazim and bipin
  */
 @Remote
 public interface ItemBeanRemote extends Serializable{
@@ -34,8 +34,7 @@ public interface ItemBeanRemote extends Serializable{
      * @return list of item for user.
      */
     public List<Item> getList(String username);
-   
-     /**
+    /**
      * delete item.
      * @param itemId
      */

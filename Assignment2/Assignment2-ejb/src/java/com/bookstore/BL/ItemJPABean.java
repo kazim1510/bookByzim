@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.bookstore.DB;
+package com.bookstore.BL;
 
 import com.bookstore.model.Item;
 import com.bookstore.utility.ConcurrentChangeDetected;
@@ -15,7 +15,7 @@ import javax.persistence.*;
 
 /**
  * Implementation of ItemBean interface.
- * @author HP
+ * @author kazim and bipin
  */
 @Default
 @Stateless
@@ -85,7 +85,6 @@ public class ItemJPABean implements ItemBeanRemote{
         em.flush();
     }
 
-    
     @Override
     public List<Item> getAllList() {
         String queryStr = "SELECT item FROM Item item";

@@ -19,7 +19,6 @@
                  <p:column colspan="3">SIGNUP</p:column>
                  </p:row>
                    </f:facet>
-                
                 <label>Full Name : </label>
                 <p:inputText id="firstname" value="#{accountController.account.fullname}" required="true"
                              requiredMessage="Full name is required"/>
@@ -27,12 +26,12 @@
                 
                 <label>User Name:</label>
                 <p:inputText id="username" value="#{accountController.account.username}" required="true"
-                requiredMessage="Username is required"/>
+                             requiredMessage="Username is required" maxlength="8"/>
                 <p:message id="m2" for="username" style="color:red"/>
                 
                 <label>Password :</label>
                 <p:password id="password" value="#{accountController.account.password}" required="true"
-                requiredMessage="password is required"/>
+                            requiredMessage="password is required" maxlength="8"/>
                 <p:message id="m3" for="password" style="color:red"/>
                 
                 <label>Email :</label>
@@ -45,7 +44,7 @@
                 
                 <label>Date of Birth :</label>
                 <p:calendar id="dob" maxdate="#{accountController.today}" value="#{accountController.account.dob}" required="true"
-                requiredMessage="DateofBirthis required"/>
+                requiredMessage="DateofBirth is required"/>
                 <p:message id="m5" for="dob" style="color:red"/>
                 
                 <label> Subscription Type: </label>
@@ -56,9 +55,8 @@
    			<f:selectItem itemValue="premium" itemLabel="premium" />
    		</p:selectOneMenu>
                 <p:message id="m6" for="sub" style="color:red"/>
-                
                 <h:outputLabel for="submonth" value="Months: " />
-                <p:spinner id="submonth" value="#{accountController.account.submonth}" min="1" max="12" required="true"
+                <p:spinner id="submonth" value="#{accountController.account.submonth}"    min="1" max="12" required="true"
                 requiredMessage="subscription month is required"/>
                 <p:message id="m7" for="submonth" style="color:red"/>
                 <f:facet name="footer">

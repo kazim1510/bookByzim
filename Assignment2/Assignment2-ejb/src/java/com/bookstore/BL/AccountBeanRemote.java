@@ -1,5 +1,5 @@
 
-package com.bookstore.DB;
+package com.bookstore.BL;
 
 import com.bookstore.model.Account;
 import java.io.Serializable;
@@ -8,7 +8,7 @@ import javax.ejb.Remote;
 
 /**
  * Account bean interface  for providing CRUD access to accounts.
- * @author HP
+ * @author kazim and bipin
  */
 @Remote
 public interface AccountBeanRemote extends Serializable{

@@ -2,27 +2,26 @@
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
-        <Node id="Admin/content.xhtml" x="900" y="300" zoom="true"/>
-        <Node id="Admin/Template.xhtml" x="1150" y="450" zoom="true"/>
-        <Node id="Customer/changepassword.xhtml" x="400" y="600" zoom="true"/>
-        <Node id="Admin/adminwelcome.xhtml" x="1400" y="300" zoom="true"/>
-        <Node id="Admin/header.xhtml" x="900" y="150" zoom="true"/>
-        <Node id="Customer/header.xhtml" x="400" y="450" zoom="true"/>
-        <Node id="header.xhtml" x="650" y="450" zoom="true"/>
         <Node id="error.xhtml" x="650" y="150" zoom="true"/>
         <Node id="footer.xhtml" x="150" y="900" zoom="true"/>
         <Node id="Customer/content.xhtml" x="650" y="600" zoom="true"/>
-        <Node id="Login.xhtml" x="55" y="72" zoom="true"/>
         <Node id="Admin/listitem.xhtml" x="400" y="750" zoom="true"/>
+        <Node id="Admin/content.xhtml" x="900" y="300" zoom="true"/>
         <Node id="Customer/welcome.xhtml" x="150" y="750" zoom="true"/>
+        <Node id="Customer/changepassword.xhtml" x="400" y="600" zoom="true"/>
         <Node id="signup.xhtml" x="10" y="473" zoom="true"/>
-        <Node id="content.xhtml" x="1150" y="300" zoom="true"/>
+        <Node id="Admin/adminwelcome.xhtml" x="1400" y="300" zoom="true"/>
+        <Node id="login.xhtml" x="150" y="150" zoom="true"/>
         <Node id="Customer/upgradeuser.xhtml" x="400" y="300" zoom="true"/>
+        <Node id="content.xhtml" x="1150" y="300" zoom="true"/>
         <Node id="Admin/adminusers.xhtml" x="150" y="300" zoom="true"/>
+        <Node id="Admin/header.xhtml" x="900" y="150" zoom="true"/>
+        <Node id="Customer/header.xhtml" x="400" y="450" zoom="true"/>
         <Node id="Customer/common.xhtml" x="1400" y="150" zoom="true"/>
         <Node id="Admin/common.xhtml" x="1150" y="150" zoom="true"/>
         <Node id="Customer/footer.xhtml" x="150" y="600" zoom="true"/>
         <Node id="Admin/footer.xhtml" x="900" y="450" zoom="true"/>
+        <Node id="header.xhtml" x="650" y="450" zoom="true"/>
         <Node id="common.xhtml" x="1650" y="150" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>

@@ -5,7 +5,7 @@
  */
 package com.bookstore.controller;
 
-import com.bookstore.DB.ItemBeanRemote;
+import com.bookstore.BL.ItemBeanRemote;
 import com.bookstore.model.Item;
 import com.bookstore.utility.ConcurrentChangeDetected;
 import java.io.Serializable;
@@ -19,23 +19,35 @@ import javax.inject.Named;
 /**
  * This backing bean manages request for upload new book and get list of books.
  *  and Delete books
- * @author kazim
+ * @author kazim and bipin
  */
 @Named
 @RequestScoped
 public class ItemController implements Serializable{
     
+    /**
+     * The EJB that provides the basic Item retrieval and update operations.
+     */
     @EJB
     ItemBeanRemote itemremote;
-
+    /**
+     * Get the current value of the Item.
+     * @return the current Item that the user is viewing/updating
+     */
     public Item getItem() {
         return item;
     }
-     public void setItem(Item item) {
+    /**
+     * Set the value of the Item.
+     * @param item
+     */
+    public void setItem(Item item) {
         this.item = item;
     }
-   private Item item=new Item();
- 
+    /**
+     * The current Item that the user is editing.
+     */
+    private Item item=new Item();
     /**
      * Method for upload new book.
      * @return
@@ -78,7 +90,6 @@ public class ItemController implements Serializable{
             return null;
         }
     }
-    
     /**
      * Delete Item.
      * @param itemId
@@ -110,7 +121,10 @@ public class ItemController implements Serializable{
             return null;
         }
     }
-    
+    /**
+     * Adds a "global" error message to the JSF view.
+     * @param message the error message to display to the user
+     */
     private void showError(String message) {
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(message));

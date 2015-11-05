@@ -5,7 +5,7 @@
  */
 package com.bookstore.controller;
 
-import com.bookstore.DB.AccountBeanRemote;
+import com.bookstore.BL.AccountBeanRemote;
 import com.bookstore.model.Account;
 import java.io.Serializable;
 import java.util.Date;
@@ -27,20 +27,41 @@ import javax.servlet.http.HttpServletRequest;
 @Named
 @RequestScoped
 public class AccountController implements Serializable{
+    
+    /**
+     * The EJB that provides the basic account retrieval and update operations.
+     */
     @EJB
     private AccountBeanRemote accountBeanRemote;
+    /**
+     * The current account
+     */
     Account account = new Account();
+    /**
+     * Get the current value of the Account.
+     * @return the current Account of the user 
+     */
     public Account getAccount(){
         return account;
     }
-
+    /**
+     * Set the value of the Account.
+     * @param account
+     */
     public void setAccount(Account account) {
         this.account = account;
     }
-    
+    /**
+     * get current date
+     * @return date 
+     */
     public Date getToday() {
         return new Date();
     }
+    /**
+     * Adds a "global" error message to the JSF view.
+     * @param message the error message to display to the user
+     */
     private void showError(String message){
         FacesContext context = FacesContext.getCurrentInstance();
         context.addMessage(null, new FacesMessage(message));
@@ -84,7 +105,7 @@ public class AccountController implements Serializable{
         FacesContext context = FacesContext.getCurrentInstance();
         try{
         accountBeanRemote.create(account);
-        return "/Login?faces-redirect=true";  }
+        return "/login?faces-redirect=true";  }
         catch(Exception e)
         {
             showError("Username already exist");
@@ -94,7 +115,7 @@ public class AccountController implements Serializable{
      /**
      * Logs out the current user via the container and also clears the
      * current user in the given session controller.
-     * 
+     * @exception ServletException
      * @param sessionController
      * @return
      */
@@ -104,11 +125,10 @@ public class AccountController implements Serializable{
         accountBeanRemote.updateLogin(acc);
         sessionController.setAccount(null);
         getRequest().logout();
-        return "/Login?faces-redirect=true";
+        return "/login?faces-redirect=true";
     }
     /**
      * Obtains the current HTTPServletRequest from the container.
-     * 
      * @return the current HTTPServletRequest
      */
     private static HttpServletRequest getRequest() {

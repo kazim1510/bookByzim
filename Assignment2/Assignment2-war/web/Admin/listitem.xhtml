@@ -40,10 +40,9 @@
                         </f:facet>
                      
                          <h:commandLink value="Delete" action="#{itemController.deleteItem(item.itemId)}"/>
-                    &nbsp;<h:commandLink value="Update" action="#{itemController.setItem(item)}"/>
+                    &nbsp;<h:commandLink value="Update"  action="#{itemController.setItem(item)}"/>
                     </h:column> 
         </h:dataTable>
-            
         </h:form>
                  
          <h:form id="form">
@@ -68,9 +67,9 @@
    			<f:selectItem itemValue="premium" itemLabel="premium" />
    		</p:selectOneMenu>
                  <p:message id="i3" for="subid" style="color:red"/> 
-                 <p:commandButton value="Insert Item" update="form" action="#{itemController.createItem()}"/>
-                 <p:commandButton value="Update Item" update="form" action="#{itemController.updateItem(itemController.item)}"/>
                  </h:panelGrid>
+              &nbsp;&nbsp;<p:commandButton value="Insert Item" update="form" action="#{itemController.createItem()}"/>&nbsp;&nbsp;
+                 <p:commandButton value="Update Item" update="form" action="#{itemController.updateItem(itemController.item)}"/>
              <h:messages globalOnly="true"/>
         </h:form>
                  <br></br><br></br>
