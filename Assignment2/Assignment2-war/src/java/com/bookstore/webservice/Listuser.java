@@ -13,9 +13,10 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
 /**
- *
  * @author bipinpatel
+ * A JAX-RS Resource that provides a expose list of all user service
  */
+
 @Path("listuser")
 public class Listuser {
     @EJB

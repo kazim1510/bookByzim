@@ -3,77 +3,75 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>View Users</title>
-        
-    </h:head>
+     </h:head>
     <h:body>
          <ui:composition template="common.xhtml">	
              <ui:define name="content">
                  <br></br><br></br>
-        <h:dataTable var="user"  value="#{accountController.listUser()}" border="1" >
-                    <h:column>
+                 <p:dataTable var="user"  value="#{accountController.listUser()}">
+                    <p:column>
                         <f:facet name="header">
                             User name
                         </f:facet>
                         #{user.username}
-                    </h:column>
-                    <h:column>
+                    </p:column>
+                    <p:column>
                         <f:facet name="header">
                             Full name
                         </f:facet>
                         #{user.fullname}
-                    </h:column>
-                    <h:column>
+                    </p:column>
+                    <p:column>
                         <f:facet name="header">
                             Email
                         </f:facet>
                         #{user.email}
-                    </h:column>
-                    <h:column>
+                    </p:column>
+                    <p:column>
                         <f:facet name="header">
                             Date of birth
                         </f:facet>
                         #{user.dob}
-                    </h:column>
-                    <h:column>
+                    </p:column>
+                    <p:column>
                         <f:facet name="header">
                             Subscription
                         </f:facet>
                         #{user.subscription}
-                    </h:column>
-                    <h:column>
+                    </p:column>
+                    <p:column>
                         <f:facet name="header">
                             Subscription Month
                         </f:facet>
                         #{user.submonth}
-                    </h:column>
-                    <h:column>
+                    </p:column>
+                    <p:column>
                         <f:facet name="header">
                             Start Date
                         </f:facet>
                         #{user.startdate}
                         
-                    </h:column>
-                    <h:column>
+                    </p:column>
+                    <p:column>
                         <f:facet name="header">
                             Expired Date
                         </f:facet>
                         #{user.enddate}
-                    </h:column>
-                      <h:column>
+                    </p:column>
+                      <p:column>
                         <f:facet name="header">
                             Action
                         </f:facet>
-                          <h:form>
-                          <h:commandLink value="Delete" action="#{accountController.deleteUser(user)}"/>
+                        <h:form>
+                          <p:commandLink value="Delete" action="#{accountController.deleteUser(user)}"/>
                           </h:form>
-                    </h:column>
-                    
-        </h:dataTable>
+                    </p:column>
+         </p:dataTable>
                  <br></br><br></br>
-                 
                  </ui:define>
             </ui:composition>
     </h:body>

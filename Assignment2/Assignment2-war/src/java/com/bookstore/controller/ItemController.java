@@ -7,10 +7,13 @@ package com.bookstore.controller;
 
 import com.bookstore.DB.ItemBeanRemote;
 import com.bookstore.model.Item;
+import com.bookstore.utility.ConcurrentChangeDetected;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 /**
@@ -31,25 +34,23 @@ public class ItemController implements Serializable{
      public void setItem(Item item) {
         this.item = item;
     }
-   
-    private Item item=new Item();
-
-  
-    
-    
-    
+   private Item item=new Item();
+ 
     /**
-     * Methode for upload new book.
+     * Method for upload new book.
      * @return
      * 
      */
     public String createItem(){
-      
+        try{
       item.setItemId(null);
       itemremote.create(item);
       return "/Admin/listitem?faces-redirect=true";
-        
-    }
+        }catch(Exception e){
+            showError("Check your Input");
+            return null;
+        }
+     }
     /**
      * get the list of books.
      * @param username
@@ -57,7 +58,12 @@ public class ItemController implements Serializable{
      * 
      */
     public List<Item> listItem(String username){
+        try{
         return itemremote.getList(username);
+        } catch (Exception e){
+            showError("Check your Input");
+            return null;
+        }
     }
     /**
      * get the list of Item.
@@ -65,7 +71,12 @@ public class ItemController implements Serializable{
      * 
      */
     public List<Item> listAll(){
+        try{
         return itemremote.getAllList();
+        } catch (Exception e){
+            showError("Check your Input");
+            return null;
+        }
     }
     
     /**
@@ -73,10 +84,14 @@ public class ItemController implements Serializable{
      * @param itemId
      * @return
      */
-    public String deleteItem(String itemId)
-    {
+    public String deleteItem(String itemId){
+        try{
         itemremote.delete(itemId);
         return "/Admin/listitem?faces-redirect=true";
+        } catch (Exception e){
+            showError("Check your Input");
+            return null;
+        }
     }
      /**
      * Update Item.
@@ -85,9 +100,19 @@ public class ItemController implements Serializable{
      */
     public String updateItem(Item item)
     {   
-        
-        Item item1= itemremote.updateItem(item);
-        this.setItem(item1);
-        return "/Admin/listitem?faces-redirect=true";
- }
+        try{
+            item= itemremote.updateItem(item);
+            return "/Admin/listitem?faces-redirect=true";
+        }
+        catch(ConcurrentChangeDetected c){
+            item = itemremote.getItem(item.getItemId());
+            showError("Item could not be updated because another user has changed the record. Please try again.");
+            return null;
+        }
+    }
+    
+    private void showError(String message) {
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(message));
+    }
 }

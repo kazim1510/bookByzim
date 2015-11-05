@@ -23,8 +23,6 @@ import javax.persistence.*;
  * Implementation of Account bean
  * @author HP
  */
-
-
 @Default
 @Stateless
 public class AccountJPABean implements AccountBeanRemote{
@@ -79,28 +77,21 @@ public class AccountJPABean implements AccountBeanRemote{
         em.flush();
         return account;
     }
-    
-    @Override
-    public void updatePassword(Account account) {
-        String password = account.getPassword();
+      @Override
+    public void updatePassword(Account account,String password) {
         account = get(account.getUsername());
-        account.setPassword(password);
         try {
-            account.setPassword(Sha.hash256(account.getPassword()));
+            account.setPassword(Sha.hash256(password));
         } catch (NoSuchAlgorithmException ex) {
             Logger.getLogger(AccountJPABean.class.getName()).log(Level.SEVERE, null, ex);
         }
-        em.merge(account);
-        em.flush();
     }
      @Override
     public void updateLogin(Account account) {
         int isLogin = account.getIsLogin();
         account = get(account.getUsername());
         account.setIsLogin(isLogin);
-    }
-    
-    
+    } 
     @Override
     public void delete(Account account) {
         account = get(account.getUsername());

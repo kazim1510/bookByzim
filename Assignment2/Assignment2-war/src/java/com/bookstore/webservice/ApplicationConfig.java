@@ -7,9 +7,10 @@ package com.bookstore.webservice;
 import javax.ws.rs.*;
 import javax.ws.rs.core.*;
 /**
- *
  * @author bipinpatel
+ * JAX-RS configuration to host JAX-RS web services under the /rest/ path.
  */
+
 @ApplicationPath("rest")
 public class ApplicationConfig extends Application {
 

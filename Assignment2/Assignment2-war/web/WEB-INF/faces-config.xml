@@ -2,48 +2,4 @@
 <faces-config version="2.2"
               xmlns="http://xmlns.jcp.org/xml/ns/javaee"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
-    <navigation-rule>
-        <from-view-id>/Login.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>welcome</from-outcome>
-            <to-view-id>/welcome.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-    <navigation-rule>
-        <from-view-id>/welcome.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>Login</from-outcome>
-            <to-view-id>/Login.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-    <navigation-rule>
-        <from-view-id>/signup.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>Login</from-outcome>
-            <to-view-id>/welcome.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-    <navigation-rule>
-        <from-view-id>/Login.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>signup</from-outcome>
-            <to-view-id>/signup.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>Login</from-outcome>
-            <to-view-id>/Login.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-    <navigation-rule>
-        <from-view-id>/adminwelcome.xhtml</from-view-id>
-        <navigation-case>
-            <from-outcome>admininsertitem</from-outcome>
-            <to-view-id>/adminInsertItem.xhtml</to-view-id>
-        </navigation-case>
-        <navigation-case>
-            <from-outcome>adminusers</from-outcome>
-            <to-view-id>/adminusers.xhtml</to-view-id>
-        </navigation-case>
-    </navigation-rule>
-</faces-config>
+              xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"></faces-config>

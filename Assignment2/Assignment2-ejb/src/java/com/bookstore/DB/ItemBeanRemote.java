@@ -6,6 +6,7 @@
 package com.bookstore.DB;
 
 import com.bookstore.model.Item;
+import com.bookstore.utility.ConcurrentChangeDetected;
 import java.io.Serializable;
 import java.util.List;
 import javax.ejb.Remote;
@@ -28,9 +29,9 @@ public interface ItemBeanRemote extends Serializable{
      */
     public Item getItem(String id);
      /**
-     * get item list for Item.
+     * get item list for user.
      * @param username.
-     * @return list of item.
+     * @return list of item for user.
      */
     public List<Item> getList(String username);
    
@@ -38,17 +39,17 @@ public interface ItemBeanRemote extends Serializable{
      * delete item.
      * @param itemId
      */
-    
-    public void delete(String itemId);
+   public void delete(String itemId);
      /**
-     * Retrieve a list of Items.
-     * @return the list of items
+     * Retrieve a list of all Items.
+     * @return the list of all items
      */
     public List<Item> getAllList();
-      /**
-     * update item.
-     * @param item
-     * @return item
+     /**
+     * Updates the item currently based on version property.
+     * @param item 
+     * @return the updated item.
+     * @throws ConcurrentChangeDetected if the item has been concurrently updated.
      */
-    public Item updateItem(Item item);
+    public Item updateItem(Item item) throws ConcurrentChangeDetected;
 }

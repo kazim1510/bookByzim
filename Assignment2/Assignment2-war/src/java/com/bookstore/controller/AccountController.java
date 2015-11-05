@@ -33,19 +33,26 @@ public class AccountController implements Serializable{
     public Account getAccount(){
         return account;
     }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+    
     public Date getToday() {
         return new Date();
+    }
+    private void showError(String message){
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(message));
     }
     /**
      * Logs in the user via container-managed authentication and also
      * records the currently logged in user into the given session controller.
      * @param sessionController the session controller
+     * @throws ServletException
      * @return 
      */
     public String login(SessionController sessionController) throws ServletException{
-        
-        FacesContext context = FacesContext.getCurrentInstance();
-        
         try{
             if(accountBeanRemote.getisLoginvalue(account.getUsername()) == 1)
                 return "/error?faces-redirect=true";
@@ -61,13 +68,11 @@ public class AccountController implements Serializable{
             else{
                 return "/Admin/adminwelcome?faces-redirect=true";
             }
-            
         }
         catch(Exception e)
         {
             System.out.println(e);
-            context.addMessage(null, new FacesMessage("Invalid username or password"));
-            this.logout(sessionController);
+            showError("Invalid username or password");
             return null;
         }
     }
@@ -82,7 +87,7 @@ public class AccountController implements Serializable{
         return "/Login?faces-redirect=true";  }
         catch(Exception e)
         {
-            context.addMessage(null, new FacesMessage("Username already exist"));
+            showError("Username already exist");
             return null;
         }
     }
@@ -116,7 +121,12 @@ public class AccountController implements Serializable{
      * 
      */
     public List<Account> listUser(){
+        try{
         return accountBeanRemote.getList();
+        } catch (Exception e){
+            showError("Check your Input");
+            return null;
+        }
     }
      /**
      * Change subscription of logged user.
@@ -124,9 +134,14 @@ public class AccountController implements Serializable{
      * @return
      */
     public String upgradeUser(SessionController sessionController){
+        try{
         account = accountBeanRemote.update(sessionController.getAccount());
         sessionController.setAccount(account);
         return "/Customer/welcome?faces-redirect=true";
+        } catch (Exception e){
+            showError("Check your Input");
+            return null;
+        }
     }
      /**
      * Delete account of user.
@@ -134,18 +149,27 @@ public class AccountController implements Serializable{
      * @return
      */
     public String deleteUser(Account account){
+        try{
         accountBeanRemote.delete(account);
         return "/Admin/adminusers?faces-redirect=true";
+        } catch (Exception e){
+            showError("Check your Input");
+            return null;
+        }
     }
     /**
      * Change password of registered user.
-     * @param account
+     * @param sessionController
      * @return
      */
-    public String changePassword(Account account){
-        accountBeanRemote.updatePassword(account);
+    public String changePassword(SessionController sessionController){
+        try{
+        accountBeanRemote.updatePassword(sessionController.getAccount(),account.getPassword());
         return "/Customer/welcome?faces-redirect=true";
+        }catch(Exception e){
+            showError("Check your Input");
+            return null;
+        }
     }
-    
-    
+   
 }

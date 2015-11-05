@@ -5,9 +5,7 @@
  */
 package com.bookstore.webservice;
 
-import com.bookstore.DB.AccountBeanRemote;
 import com.bookstore.DB.ItemBeanRemote;
-import com.bookstore.model.Account;
 import com.bookstore.model.Item;
 import java.util.List;
 import javax.ejb.EJB;
@@ -15,8 +13,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 
 /**
- *
- * @author HP
+ * @author bipinpatel
+ * A JAX-RS Resource that provides a expose list of all item service
  */
 @Path("listitem")
 public class ListItem {

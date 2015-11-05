@@ -48,6 +48,7 @@
                  
          <h:form id="form">
             <h:inputHidden id="itemid" value="#{itemController.item.itemId}"/>
+            <h:inputHidden id="version" value="#{itemController.item.version}"/>
             <h:panelGrid columns="3" cellpadding="4" cellspacing="3">
                 
                 <label>Item name : </label>
@@ -70,11 +71,10 @@
                  <p:commandButton value="Insert Item" update="form" action="#{itemController.createItem()}"/>
                  <p:commandButton value="Update Item" update="form" action="#{itemController.updateItem(itemController.item)}"/>
                  </h:panelGrid>
-        
+             <h:messages globalOnly="true"/>
         </h:form>
                  <br></br><br></br>
              </ui:define>
          </ui:composition>
     </h:body>
 </html>
-
